@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  input {
+    border-radius: 20px;
+    padding: 8px;
+    text-align: center;
+  }
+  .locationAndDate {
+    line-height: 5px;
+  }
+  .cityName {
+    text-transform: uppercase;
+    font-size: 26px;
+  }
+  .lat_lon {
+    text-transform: uppercase;
+  }
+}
