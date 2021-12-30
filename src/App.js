@@ -1,9 +1,10 @@
 import { getDataByCityName, getDataByGeolocation } from "./service/service";
 import { useEffect, useState } from "react";
+import Header from "./components/header/header";
 
 function App() {
   const [data, setData] = useState("");
-  const [city, setCity] = useState("Obrenovac");
+  const [city, setCity] = useState("");
   const [latitude, setLatitude] = useState({});
   const [longitude, setLongitude] = useState({});
 
@@ -14,10 +15,14 @@ function App() {
 
   // useEffect for geolocation
   useEffect(() => {
-    getDataByGeolocation(latitude, longitude).then((response) =>
-      setData(response)
-    );
-  }, [latitude, longitude]);
+    if (city === "") {
+      getDataByGeolocation(latitude, longitude).then((response) =>
+        setData(response)
+      );
+    } else {
+      getDataByCityName(city).then((response) => setData(response));
+    }
+  }, [latitude, longitude, city]);
 
   // take geolocation !!!
   function success(position) {
@@ -27,14 +32,14 @@ function App() {
     setLatitude(latitude);
     setLongitude(longitude);
   }
-  function error(error) {
+  function errorr(error) {
     alert(`ERROR(${error.code}): ${error.message}`);
   }
 
   /*  if (!navigator.geolocation) {
     console.log("Geolocation is not supported by your browser");
   } else { */
-  navigator.geolocation.getCurrentPosition(success, error);
+  navigator.geolocation.getCurrentPosition(success, errorr);
   /* } */
 
   if (!!data) {
@@ -44,9 +49,12 @@ function App() {
   }
   /*   console.log(data); */
   return (
-    <div className="App">
-      <h1>Weather APP</h1>
-    </div>
+    <>
+      <Header setCity={setCity} data={data} />
+      <div className="App">
+        <h1>Weather APP</h1>
+      </div>
+    </>
   );
 }
 
