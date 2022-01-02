@@ -1,6 +1,7 @@
 import { getDataByCityName, getDataByGeolocation } from "./service/service";
 import { useEffect, useState } from "react";
 import Header from "./components/header/header";
+import CurrentTempAndStats from "./components/main_content/current_temperature_and_stats/current_temp";
 
 function App() {
   const [data, setData] = useState("");
@@ -28,7 +29,6 @@ function App() {
   function success(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log(latitude);
     setLatitude(latitude);
     setLongitude(longitude);
   }
@@ -47,10 +47,10 @@ function App() {
   } else {
     console.log("LOADING");
   }
-  /*   console.log(data); */
   return (
     <>
       <Header setCity={setCity} data={data} />
+      <CurrentTempAndStats data={data} />
       <div className="App">
         <h1>Weather APP</h1>
       </div>
