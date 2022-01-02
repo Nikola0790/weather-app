@@ -40,6 +40,8 @@ const Header = ({ setCity, data }) => {
 
   const day = (day) => {
     switch (day) {
+      case 0:
+        return "Sunday";
       case 1:
         return "Monday";
       case 2:
@@ -52,8 +54,6 @@ const Header = ({ setCity, data }) => {
         return "Friday";
       case 6:
         return "Saturday";
-      case 7:
-        return "Sunday";
     }
   };
 
@@ -74,9 +74,6 @@ const Header = ({ setCity, data }) => {
     }
   }
 
-  if (data.name) {
-    console.log(typeof data.coord.lat);
-  }
   return (
     <header>
       <div className="locationAndDate">
