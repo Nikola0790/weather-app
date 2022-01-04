@@ -1,7 +1,13 @@
-const Header = ({ setCity, data }) => {
+const Header = ({ setCity, data, name, nameByGeo }) => {
   const cityName = (event) => {
     if (event.key === "Enter") {
       setCity(event.target.value);
+
+      // if we don't set "", we can't change the location name in the header
+      if (event.target.value === "") {
+        name.name = "";
+        name.country = "";
+      }
     }
   };
 
@@ -60,44 +66,43 @@ const Header = ({ setCity, data }) => {
   let coordinatesLatitude;
   let coordinatesLongitude;
 
-  if (data.name) {
-    if (data.coord.lat < 0) {
-      coordinatesLatitude = `${data.coord.lat.toString().slice(1)} S`;
+  if (data) {
+    if (data.lat < 0) {
+      coordinatesLatitude = `${data.lat.toString().slice(1)} S`;
     } else {
-      coordinatesLatitude = `${data.coord.lat} N`;
+      coordinatesLatitude = `${data.lat} N`;
     }
 
-    if (data.coord.lon < 0) {
-      coordinatesLongitude = `${data.coord.lon.toString().slice(1)} W`;
+    if (data.lon < 0) {
+      coordinatesLongitude = `${data.lon.toString().slice(1)} W`;
     } else {
-      coordinatesLongitude = `${data.coord.lon} E`;
+      coordinatesLongitude = `${data.lon} E`;
     }
   }
 
   return (
     <header>
       <div className="locationAndDate">
-        {data.name ? (
-          <p className="cityName">
-            {data.name}, {data.sys.country}
-          </p>
+        {data && name.name !== "" ? (
+          <>
+            <p className="cityName">
+              {name.name}, {name.country}
+            </p>
+            <p className="lat_lon">
+              Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
+            </p>
+          </>
         ) : (
-          <p className="lat_lon">
-            Latitude: {data.lat}, Longitude: {data.lon}
-          </p>
+          <>
+            <p className="cityName">{nameByGeo}</p>
+            <p className="lat_lon">
+              Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
+            </p>
+          </>
         )}
         <p className="date">
           {day(getDay)} {getDate} {month(getMonth)}
         </p>
-      </div>
-      <div>
-        {data.name ? (
-          <p className="lat_lon">
-            Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
-          </p>
-        ) : (
-          <p></p>
-        )}
       </div>
       <div className="searchBox">
         <input type="text" placeholder="City name" onKeyPress={cityName} />
