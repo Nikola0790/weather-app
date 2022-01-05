@@ -4,10 +4,16 @@ const CurrentTempAndStats = ({ data }) => {
   } else {
     const icon = data.current.weather[0].icon;
     const description = data.current.weather[0].description;
-    const temperature = data.current.temp;
-    const feelsLike = data.current.feels_like;
-    const sunriseUnixTimestamp = data.current.sunrise;
-    const sunsetUnixTimestamp = data.current.sunset;
+    const temperature = Math.round(data.current.temp);
+    const feelsLike = Math.round(data.current.feels_like);
+    const maxTemp = Math.round(data.daily[0].temp.max);
+    const minTemp = Math.round(data.daily[0].temp.min);
+    const windSpeed = data.current.wind_speed;
+    const chancePrecipitation = Math.round(data.daily[0].pop * 100);
+    const sunriseUnixTimestamp =
+      data.current.sunrise + data.timezone_offset - 3600;
+    const sunsetUnixTimestamp =
+      data.current.sunset + data.timezone_offset - 3600;
     let dateSunrise = new Date(sunriseUnixTimestamp * 1000);
     let dateSunset = new Date(sunsetUnixTimestamp * 1000);
     let hoursSunrise = dateSunrise.getHours();
@@ -18,7 +24,7 @@ const CurrentTempAndStats = ({ data }) => {
     let secondsSunset = dateSunset.getSeconds();
 
     return (
-      <>
+      <div className="box_weather_data_and_stats">
         <div className="current_data">
           <div>
             <img
@@ -28,41 +34,59 @@ const CurrentTempAndStats = ({ data }) => {
             <p>{description}</p>
           </div>
           <div>
-            <p>{temperature}</p>
-            <p>Feels like {feelsLike}</p>
+            <p>
+              {temperature}
+              <span>&#176;</span>
+            </p>
+            <p>
+              Feels like {feelsLike}
+              <span>&#176;</span>
+            </p>
           </div>
         </div>
         <div className="data_for_all_day">
-          <div>
-            <p>{data.daily[0].temp.max}</p>
-            <p>Max</p>
+          <div className="box_flex">
+            <div>
+              <p className="data_fs">
+                {maxTemp}
+                <span>&#176;</span>
+              </p>
+              <p>Max</p>
+            </div>
+            <div>
+              <p className="data_fs">
+                {minTemp}
+                <span>&#176;</span>
+              </p>
+              <p>Min</p>
+            </div>
           </div>
-          <div>
-            <p>{data.daily[0].temp.min}</p>
-            <p>Min</p>
+          <div className="box_flex">
+            <div>
+              <p className="data_fs">{windSpeed} m/s</p>
+              <p>Wind speed</p>
+            </div>
+            <div>
+              <p className="data_fs">{chancePrecipitation} %</p>
+              <p>Chance of precipitation</p>
+            </div>
           </div>
-          <div>
-            <p>{data.current.wind_speed}</p>
-            <p>Wind speed</p>
-          </div>
-          <div>
-            <p>{data.daily[0].pop * 100} %</p>
-            <p>Chance of precipitation</p>
-          </div>
-          <div>
-            <p>
-              {hoursSunrise}h:{minutesSunrise}m:{secondsSunrise}s
-            </p>
-            <p>Sunrise</p>
-          </div>
-          <div>
-            <p>
-              {hoursSunset}h:{minutesSunset}m:{secondsSunset}s
-            </p>
-            <p>Sunset</p>
+          <div className="box_flex">
+            <div>
+              <p className="data_fs">
+                {hoursSunrise}h {minutesSunrise}m {secondsSunrise}s
+              </p>
+              <p>Sunrise</p>
+            </div>
+            <div>
+              <p className="data_fs">
+                {hoursSunset}h {minutesSunset}m {secondsSunset}s
+              </p>
+              <p>Sunset</p>
+            </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 };
