@@ -4,6 +4,7 @@ header {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  margin-top: 30px;
 }
 
 header input {
@@ -25,10 +26,87 @@ header .lat_lon {
   text-transform: uppercase;
 }
 
+.box_weather_data_and_stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+}
+
+.box_weather_data_and_stats .current_data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  text-align: center;
+  border-right: 1px solid #d0d0d0;
+}
+
+.box_weather_data_and_stats .current_data div:first-child {
+  width: 50%;
+}
+
+.box_weather_data_and_stats .current_data div:first-child p:first-letter {
+  text-transform: capitalize;
+}
+
+.box_weather_data_and_stats .current_data div:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+}
+
+.box_weather_data_and_stats .current_data div:last-child p:first-child {
+  font-size: 50px;
+  line-height: 0%;
+}
+
+.box_weather_data_and_stats .data_for_all_day {
+  width: 50%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+}
+
+.box_weather_data_and_stats .data_for_all_day .box_flex {
+  text-align: center;
+}
+
+.box_weather_data_and_stats .data_for_all_day .box_flex div:first-child {
+  margin-bottom: 40px;
+}
+
+.box_weather_data_and_stats .data_for_all_day .box_flex p {
+  font-size: 14px;
+  color: #cecccc;
+}
+
+.box_weather_data_and_stats .data_for_all_day .box_flex .data_fs {
+  font-size: 18px;
+  color: white;
+}
+
 body {
   color: #ffffff;
   background: #2a34b2;
   background: -webkit-gradient(linear, left top, left bottom, from(#2a34b2), color-stop(35%, #1f5dbf), to(#1585cb));
   background: linear-gradient(#2a34b2 0%, #1f5dbf 35%, #1585cb 100%);
+}
+
+body .container {
+  width: 80%;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,4 +1,5 @@
 @import "../header/header";
+@import "../main_content/styleCurrentTemp";
 @import "../variables/variables";
 
 body {
@@ -9,4 +10,8 @@ body {
     rgba(31, 93, 191, 1) 35%,
     rgba(21, 133, 203, 1) 100%
   );
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
