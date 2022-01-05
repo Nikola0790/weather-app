@@ -84,24 +84,19 @@ const Header = ({ setCity, data, name, nameByGeo }) => {
     <header>
       <div className="locationAndDate">
         {data && name.name !== "" ? (
-          <>
-            <p className="cityName">
-              {name.name}, {name.country}
-            </p>
-            <p className="lat_lon">
-              Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
-            </p>
-          </>
+          <p className="cityName">
+            {name.name}, {name.country}
+          </p>
         ) : (
-          <>
-            <p className="cityName">{nameByGeo}</p>
-            <p className="lat_lon">
-              Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
-            </p>
-          </>
+          <p className="cityName">{nameByGeo}</p>
         )}
         <p className="date">
           {day(getDay)} {getDate} {month(getMonth)}
+        </p>
+      </div>
+      <div className="">
+        <p className="lat_lon">
+          Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
         </p>
       </div>
       <div className="searchBox">
