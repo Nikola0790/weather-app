@@ -1,0 +1,46 @@
+.box_weather_data_and_stats {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  .current_data {
+    display: flex;
+    width: 50%;
+    text-align: center;
+    border-right: 1px solid rgb(208, 208, 208);
+    div:first-child {
+      width: 50%;
+      p:first-letter {
+        text-transform: capitalize;
+      }
+    }
+    div:last-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 50%;
+      p:first-child {
+        font-size: 50px;
+        line-height: 0%;
+      }
+    }
+  }
+  .data_for_all_day {
+    width: 50%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    .box_flex {
+      text-align: center;
+      div:first-child {
+        margin-bottom: 40px;
+      }
+      p {
+        font-size: 14px;
+        color: rgb(206, 204, 204);
+      }
+      .data_fs {
+        font-size: 18px;
+        color: white;
+      }
+    }
+  }
+}
