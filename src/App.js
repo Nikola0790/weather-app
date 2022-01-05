@@ -79,7 +79,7 @@ function App() {
     return <p>{data.message}</p>;
   }
   return (
-    <>
+    <div className="container">
       <Header
         setCity={setCityAsParametr}
         data={data}
@@ -88,7 +88,7 @@ function App() {
       />
       <CurrentTempAndStats data={data} />
       <div className="App"></div>
-    </>
+    </div>
   );
 }
 
