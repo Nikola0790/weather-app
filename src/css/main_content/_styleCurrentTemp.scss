@@ -27,7 +27,7 @@
   .data_for_all_day {
     width: 50%;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
     .box_flex {
       text-align: center;
       div:first-child {

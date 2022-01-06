@@ -76,8 +76,8 @@ header .lat_lon {
   width: 50%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto auto auto;
-      grid-template-columns: auto auto auto;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
 }
 
 .box_weather_data_and_stats .data_for_all_day .box_flex {

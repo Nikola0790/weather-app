@@ -10,6 +10,9 @@ const CurrentTempAndStats = ({ data }) => {
     const minTemp = Math.round(data.daily[0].temp.min);
     const windSpeed = data.current.wind_speed;
     const chancePrecipitation = Math.round(data.daily[0].pop * 100);
+    const uvIndex = Math.round(data.current.uvi);
+    let uvIndexCategory;
+    const humidity = data.current.humidity;
     const sunriseUnixTimestamp =
       data.current.sunrise + data.timezone_offset - 3600;
     const sunsetUnixTimestamp =
@@ -22,6 +25,18 @@ const CurrentTempAndStats = ({ data }) => {
     let hoursSunset = dateSunset.getHours();
     let minutesSunset = dateSunset.getMinutes();
     let secondsSunset = dateSunset.getSeconds();
+
+    if (uvIndex <= 2) {
+      uvIndexCategory = "Low";
+    } else if (uvIndex > 2 && uvIndex <= 5) {
+      uvIndexCategory = "Medium";
+    } else if (uvIndex > 5 && uvIndex <= 7) {
+      uvIndexCategory = "High";
+    } else if (uvIndex > 7 && uvIndex <= 10) {
+      uvIndexCategory = "Very high";
+    } else if (uvIndex > 10) {
+      uvIndexCategory = "Extremely high";
+    }
 
     return (
       <div className="box_weather_data_and_stats">
@@ -63,12 +78,24 @@ const CurrentTempAndStats = ({ data }) => {
           </div>
           <div className="box_flex">
             <div>
-              <p className="data_fs">{windSpeed} m/s</p>
-              <p>Wind speed</p>
+              <p className="data_fs">
+                {uvIndexCategory}, {uvIndex}
+              </p>
+              <p>UV index</p>
             </div>
             <div>
               <p className="data_fs">{chancePrecipitation} %</p>
               <p>Chance of precipitation</p>
+            </div>
+          </div>
+          <div className="box_flex">
+            <div>
+              <p className="data_fs">{windSpeed} m/s</p>
+              <p>Wind speed</p>
+            </div>
+            <div>
+              <p className="data_fs">{humidity} %</p>
+              <p>Humidity</p>
             </div>
           </div>
           <div className="box_flex">
