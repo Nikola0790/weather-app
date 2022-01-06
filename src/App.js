@@ -1,9 +1,16 @@
+import { getAllDataByGeolocation } from "./service/all_weather_data_onecall/service_all_weather_data_onecall";
+import {
+  getCurrentDataByCityName,
+  getCurrentDataByGeoCoordinates,
+} from "./service/current_weather_data/service_current_weather_data";
 import {
   getCordinatesByLocationName,
-  getCurrentDataByCityName,
-  getDataByGeolocation,
   getLocationNameByCordinates,
-} from "./service/service";
+} from "./service/geocoding_api/service_geo_data";
+import {
+  getDataFor_5_DaysByCityName,
+  getDataFor_5_DaysByGeolocation,
+} from "./service/weather_data_next_5_days/service_weather_data_next_5_days";
 import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import CurrentTempAndStats from "./components/main_content/current_temperature_and_stats/current_temp";
@@ -19,15 +26,9 @@ function App() {
   const [latitude, setLatitude] = useState({});
   const [longitude, setLongitude] = useState({});
 
-  // useEffect for city name
-  /*  useEffect(() => {
-    getDataByCityName(city).then((response) => setData(response));
-  }, []); */
-
-  // useEffect for geolocation
   useEffect(() => {
     if (cityAsParametr === "") {
-      getDataByGeolocation(latitude, longitude).then((response) =>
+      getAllDataByGeolocation(latitude, longitude).then((response) =>
         setData(response)
       );
       getLocationNameByCordinates(latitude, longitude).then((response) =>
@@ -40,7 +41,7 @@ function App() {
           name: response.name,
           country: response.sys.country,
         });
-        getDataByGeolocation(response.coord.lat, response.coord.lon).then(
+        getAllDataByGeolocation(response.coord.lat, response.coord.lon).then(
           (response) => setData(response)
         );
         /* getLocationNameByCordinates(
