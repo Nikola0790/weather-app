@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import CurrentTempAndStats from "./components/main_content/current_temperature_and_stats/current_temp";
+import TodaysWeather from "./components/main_content/weather_by_hour/todayWeather";
 
 function App() {
   const [data, setData] = useState("");
@@ -25,6 +26,7 @@ function App() {
   });
   const [latitude, setLatitude] = useState({});
   const [longitude, setLongitude] = useState({});
+  const [dataNext5Days, setDataNext5Days] = useState("");
 
   useEffect(() => {
     if (cityAsParametr === "") {
@@ -34,9 +36,11 @@ function App() {
       getLocationNameByCordinates(latitude, longitude).then((response) =>
         setNameByGeo(response[0].name)
       );
+      getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
+        setDataNext5Days(response);
+      });
     } else {
       getCurrentDataByCityName(cityAsParametr).then((response) => {
-        console.log(response);
         setCityNameSearch({
           name: response.name,
           country: response.sys.country,
@@ -44,6 +48,12 @@ function App() {
         getAllDataByGeolocation(response.coord.lat, response.coord.lon).then(
           (response) => setData(response)
         );
+        getDataFor_5_DaysByGeolocation(
+          response.coord.lat,
+          response.coord.lon
+        ).then((response) => {
+          setDataNext5Days(response);
+        });
         /* getLocationNameByCordinates(
           response.coord.lat,
           response.coord.lon
@@ -75,10 +85,10 @@ function App() {
     console.log("LOADING");
   }
 
-  console.log(nameByGeo);
   if (data.cod == 404) {
     return <p>{data.message}</p>;
   }
+  console.log(dataNext5Days);
   return (
     <div className="container">
       <Header
@@ -88,6 +98,7 @@ function App() {
         nameByGeo={nameByGeo}
       />
       <CurrentTempAndStats data={data} />
+      <TodaysWeather data={dataNext5Days} />
       <div className="App"></div>
     </div>
   );
