@@ -2,8 +2,9 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 30px;
 }
 
@@ -96,6 +97,30 @@ header .lat_lon {
 .box_weather_data_and_stats .data_for_all_day .box_flex .data_fs {
   font-size: 18px;
   color: white;
+}
+
+.box_todays_weather {
+  margin-top: 50px;
+}
+
+.box_todays_weather .order_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+}
+
+.box_todays_weather .order_box .small_box_weather {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #1e60c0), color-stop(100%, #226edd), to(#1585cb));
+  background: linear-gradient(#1e60c0 20%, #226edd 100%, #1585cb 100%);
+  line-height: 0;
+}
+
+.box_todays_weather .order_box .small_box_weather img {
+  width: 70%;
 }
 
 body {
