@@ -2,6 +2,7 @@ const TodaysWeather = ({ data }) => {
   if (data === "" || data.cod == 400) {
     return <p>Loading</p>;
   }
+
   const listOfData = data.list;
   return (
     <div className="box_todays_weather">
