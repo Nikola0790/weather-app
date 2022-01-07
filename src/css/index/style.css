@@ -46,15 +46,8 @@ header .lat_lon {
   border-right: 1px solid #d0d0d0;
 }
 
-.box_weather_data_and_stats .current_data div:first-child {
+.box_weather_data_and_stats .current_data .left_box {
   width: 50%;
-}
-
-.box_weather_data_and_stats .current_data div:first-child p:first-letter {
-  text-transform: capitalize;
-}
-
-.box_weather_data_and_stats .current_data div:last-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,15 +55,40 @@ header .lat_lon {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.box_weather_data_and_stats .current_data .left_box div {
+  margin-right: 10px;
+}
+
+.box_weather_data_and_stats .current_data .left_box div p:first-letter {
+  text-transform: capitalize;
+}
+
+.box_weather_data_and_stats .current_data .right_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   width: 50%;
 }
 
-.box_weather_data_and_stats .current_data div:last-child p:first-child {
-  font-size: 50px;
-  line-height: 0%;
+.box_weather_data_and_stats .current_data .right_box div {
+  margin-left: 10px;
+}
+
+.box_weather_data_and_stats .current_data .right_box div p:first-child {
+  font-size: 58px;
+  margin: 18px 0 35px 0;
 }
 
 .box_weather_data_and_stats .data_for_all_day {
@@ -116,11 +134,31 @@ header .lat_lon {
 .box_todays_weather .order_box .small_box_weather {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #1e60c0), color-stop(100%, #226edd), to(#1585cb));
   background: linear-gradient(#1e60c0 20%, #226edd 100%, #1585cb 100%);
-  line-height: 0;
+  width: 12%;
+  line-height: 50%;
 }
 
 .box_todays_weather .order_box .small_box_weather img {
   width: 70%;
+}
+
+.next_7_container {
+  margin-top: 100px;
+}
+
+.next_7_container .next_7 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #1e60c0), color-stop(100%, #226edd), to(#1585cb));
+  background: linear-gradient(#1e60c0 20%, #226edd 100%, #1585cb 100%);
+  margin-top: 10px;
 }
 
 body {
