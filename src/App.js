@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import CurrentTempAndStats from "./components/main_content/current_temperature_and_stats/current_temp";
 import TodaysWeather from "./components/main_content/weather_by_hour/todayWeather";
+import NextSevenDays from "./components/main_content/next_7_days/next_7_days";
 
 function App() {
   const [data, setData] = useState("");
@@ -79,15 +80,14 @@ function App() {
 
   navigator.geolocation.getCurrentPosition(success, errorr);
 
-  if (!!data) {
-    console.log(data);
-  } else {
-    console.log("LOADING");
+  if (data.cod === "400" || data === "") {
+    return <p>LOADING</p>;
   }
 
   if (data.cod == 404) {
     return <p>{data.message}</p>;
   }
+  console.log(data);
   console.log(dataNext5Days);
   return (
     <div className="container">
@@ -99,6 +99,7 @@ function App() {
       />
       <CurrentTempAndStats data={data} />
       <TodaysWeather data={dataNext5Days} />
+      <NextSevenDays data={data} />
       <div className="App"></div>
     </div>
   );
