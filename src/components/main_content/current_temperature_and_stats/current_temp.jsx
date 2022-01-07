@@ -41,22 +41,26 @@ const CurrentTempAndStats = ({ data }) => {
     return (
       <div className="box_weather_data_and_stats">
         <div className="current_data">
-          <div>
-            <img
-              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-              alt="weather icon"
-            />
-            <p>{description}</p>
+          <div className="left_box">
+            <div>
+              <img
+                src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                alt="weather icon"
+              />
+              <p>{description}</p>
+            </div>
           </div>
-          <div>
-            <p>
-              {temperature}
-              <span>&#176;</span>
-            </p>
-            <p>
-              Feels like {feelsLike}
-              <span>&#176;</span>
-            </p>
+          <div className="right_box">
+            <div>
+              <p>
+                {temperature}
+                <span>&#176;</span>
+              </p>
+              <p>
+                Feels like {feelsLike}
+                <span>&#176;</span>
+              </p>
+            </div>
           </div>
         </div>
         <div className="data_for_all_day">
