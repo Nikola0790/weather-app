@@ -20,7 +20,7 @@ import NextSevenDays from "./components/main_content/next_7_days/next_7_days";
 function App() {
   const [data, setData] = useState("");
   const [cityAsParametr, setCityAsParametr] = useState("");
-  const [nameByGeo, setNameByGeo] = useState("");
+  const [nameByGeo, setNameByGeo] = useState({});
   const [cityNameSearch, setCityNameSearch] = useState({
     name: "",
     country: "",
@@ -34,9 +34,9 @@ function App() {
       getAllDataByGeolocation(latitude, longitude).then((response) =>
         setData(response)
       );
-      getLocationNameByCordinates(latitude, longitude).then((response) =>
-        setNameByGeo(response[0].name)
-      );
+      getLocationNameByCordinates(latitude, longitude).then((response) => {
+        setNameByGeo(response[0].name);
+      });
       getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
         setDataNext5Days(response);
       });
@@ -55,17 +55,9 @@ function App() {
         ).then((response) => {
           setDataNext5Days(response);
         });
-        /* getLocationNameByCordinates(
-          response.coord.lat,
-          response.coord.lon
-        ).then((response) => console.log(response)); */
       });
-      /*  getDataByCityName(city).then((response) => setData(response)); */
-      /* getCordinatesByLocationName(city).then((response) => {
-        console.log(response);
-      }); */
     }
-  }, [latitude, longitude, cityAsParametr]);
+  }, [latitude, longitude, cityAsParametr, nameByGeo]);
 
   // take geolocation !!!
   function success(position) {
