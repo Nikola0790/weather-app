@@ -211,11 +211,19 @@ header .searchBox {
   width: 70%;
 }
 
-.next_7_container {
+@media (max-width: 768px) {
+  .box_todays_weather {
+    margin-top: 0;
+    border-bottom: 1px solid #d0d0d0;
+    padding-bottom: 15px;
+  }
+}
+
+.next_7_box {
   margin-top: 100px;
 }
 
-.next_7_container .next_7 {
+.next_7_box .next_7_container .next_7 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -230,7 +238,10 @@ header .searchBox {
 }
 
 @media (max-width: 768px) {
-  .next_7_container {
+  .next_7_box {
+    margin-top: 0;
+  }
+  .next_7_box .next_7_container {
     margin-top: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -239,17 +250,17 @@ header .searchBox {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .next_7_container .next_7 {
+  .next_7_box .next_7_container .next_7 {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    width: 12%;
+    width: 18%;
   }
-  .next_7_container .next_7 img {
+  .next_7_box .next_7_container .next_7 img {
     width: 80%;
   }
-  .next_7_container .next_7 div p {
+  .next_7_box .next_7_container .next_7 div p {
     margin: 2px 0;
   }
 }
