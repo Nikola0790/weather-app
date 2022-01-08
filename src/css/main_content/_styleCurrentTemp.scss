@@ -53,3 +53,39 @@
     }
   }
 }
+
+// responsive
+
+@media (max-width: 1200px) {
+  .box_weather_data_and_stats {
+    .current_data {
+      width: 35%;
+    }
+    .data_for_all_day {
+      width: 65%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .box_weather_data_and_stats {
+    flex-direction: column;
+    .current_data {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid rgb(208, 208, 208);
+    }
+    .data_for_all_day {
+      width: 100%;
+      border-bottom: 1px solid rgb(208, 208, 208);
+      .box_flex {
+        .data_fs {
+          font-size: 16px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

@@ -9,3 +9,25 @@
     margin-top: 10px;
   }
 }
+
+// responsive
+
+@media (max-width: 768px) {
+  .next_7_container {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    .next_7 {
+      flex-direction: column;
+      width: 12%;
+      img {
+        width: 80%;
+      }
+      div {
+        p {
+          margin: 2px 0;
+        }
+      }
+    }
+  }
+}

@@ -82,7 +82,7 @@ const Header = ({ setCity, data, name, nameByGeo }) => {
 
   return (
     <header>
-      <div className="locationAndDate">
+      <div className="locationAndDate grid">
         {data && name.name !== "" ? (
           <p className="cityName">
             {name.name}, {name.country}
@@ -94,12 +94,13 @@ const Header = ({ setCity, data, name, nameByGeo }) => {
           {day(getDay)} {getDate} {month(getMonth)}
         </p>
       </div>
-      <div className="">
+      <div className="grid">
         <p className="lat_lon">
-          Latitude: {coordinatesLatitude}, Longitude: {coordinatesLongitude}
+          Latitude: {coordinatesLatitude} <br /> Longitude:
+          {coordinatesLongitude}
         </p>
       </div>
-      <div className="searchBox">
+      <div className="searchBox grid">
         <input type="text" placeholder="City name" onKeyPress={cityName} />
       </div>
     </header>

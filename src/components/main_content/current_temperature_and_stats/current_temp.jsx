@@ -105,13 +105,13 @@ const CurrentTempAndStats = ({ data }) => {
           <div className="box_flex">
             <div>
               <p className="data_fs">
-                {hoursSunrise}h {minutesSunrise}m {secondsSunrise}s
+                {hoursSunrise}h {minutesSunrise}m {/* {secondsSunrise}s */}
               </p>
               <p>Sunrise</p>
             </div>
             <div>
               <p className="data_fs">
-                {hoursSunset}h {minutesSunset}m {secondsSunset}s
+                {hoursSunset}h {minutesSunset}m {/* {secondsSunset}s */}
               </p>
               <p>Sunset</p>
             </div>

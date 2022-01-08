@@ -2,13 +2,19 @@ header {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  align-items: center;
+  .grid {
+    width: 33%;
+  }
   input {
     border-radius: 20px;
     padding: 8px;
     text-align: center;
   }
   .locationAndDate {
-    line-height: 5px;
+  }
+  .date {
+    line-height: 0;
   }
   .cityName {
     text-transform: uppercase;
@@ -16,5 +22,37 @@ header {
   }
   .lat_lon {
     text-transform: uppercase;
+    text-align: center;
+  }
+  .searchBox {
+    text-align: right;
+  }
+}
+
+// responsive
+
+@media (max-width: 1200px) {
+  header {
+    .cityName {
+      font-size: 22px;
+    }
+    .lat_lon {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column-reverse;
+    .grid {
+      width: 100%;
+      text-align: center;
+    }
+    .searchBox {
+      input {
+        width: 100%;
+      }
+    }
   }
 }

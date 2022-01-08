@@ -6,6 +6,13 @@ header {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .grid {
+  width: 33%;
 }
 
 header input {
@@ -14,8 +21,8 @@ header input {
   text-align: center;
 }
 
-header .locationAndDate {
-  line-height: 5px;
+header .date {
+  line-height: 0;
 }
 
 header .cityName {
@@ -25,6 +32,36 @@ header .cityName {
 
 header .lat_lon {
   text-transform: uppercase;
+  text-align: center;
+}
+
+header .searchBox {
+  text-align: right;
+}
+
+@media (max-width: 1200px) {
+  header .cityName {
+    font-size: 22px;
+  }
+  header .lat_lon {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  header .grid {
+    width: 100%;
+    text-align: center;
+  }
+  header .searchBox input {
+    width: 100%;
+  }
 }
 
 .box_weather_data_and_stats {
@@ -117,6 +154,39 @@ header .lat_lon {
   color: white;
 }
 
+@media (max-width: 1200px) {
+  .box_weather_data_and_stats .current_data {
+    width: 35%;
+  }
+  .box_weather_data_and_stats .data_for_all_day {
+    width: 65%;
+  }
+}
+
+@media (max-width: 768px) {
+  .box_weather_data_and_stats {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .box_weather_data_and_stats .current_data {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #d0d0d0;
+  }
+  .box_weather_data_and_stats .data_for_all_day {
+    width: 100%;
+    border-bottom: 1px solid #d0d0d0;
+  }
+  .box_weather_data_and_stats .data_for_all_day .box_flex .data_fs {
+    font-size: 16px;
+  }
+  .box_weather_data_and_stats .data_for_all_day .box_flex p {
+    font-size: 12px;
+  }
+}
+
 .box_todays_weather {
   margin-top: 100px;
 }
@@ -132,11 +202,6 @@ header .lat_lon {
 }
 
 .box_todays_weather .order_box .small_box_weather {
-  /* background: linear-gradient(
-        rgba(30, 96, 192, 1) 20%,
-        rgba(34, 110, 221, 1) 100%,
-        rgba(21, 133, 203, 1) 100%
-      ); */
   background-color: #205cb6;
   width: 12%;
   line-height: 50%;
@@ -160,13 +225,33 @@ header .lat_lon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /* background: linear-gradient(
-      rgba(30, 96, 192, 1) 20%,
-      rgba(34, 110, 221, 1) 100%,
-      rgba(21, 133, 203, 1) 100%
-    ); */
   background-color: #205cb6;
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .next_7_container {
+    margin-top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .next_7_container .next_7 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 12%;
+  }
+  .next_7_container .next_7 img {
+    width: 80%;
+  }
+  .next_7_container .next_7 div p {
+    margin: 2px 0;
+  }
 }
 
 body {
