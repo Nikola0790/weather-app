@@ -1,15 +1,11 @@
 .box_todays_weather {
-  margin-top: 50px;
+  margin-top: 100px;
   .order_box {
     display: flex;
     justify-content: space-between;
     text-align: center;
     .small_box_weather {
-      background: linear-gradient(
-        rgba(30, 96, 192, 1) 20%,
-        rgba(34, 110, 221, 1) 100%,
-        rgba(21, 133, 203, 1) 100%
-      );
+      background-color: rgb(32, 92, 182);
       width: 12%;
       line-height: 50%;
       img {

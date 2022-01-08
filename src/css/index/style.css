@@ -118,7 +118,7 @@ header .lat_lon {
 }
 
 .box_todays_weather {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .box_todays_weather .order_box {
@@ -132,8 +132,12 @@ header .lat_lon {
 }
 
 .box_todays_weather .order_box .small_box_weather {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #1e60c0), color-stop(100%, #226edd), to(#1585cb));
-  background: linear-gradient(#1e60c0 20%, #226edd 100%, #1585cb 100%);
+  /* background: linear-gradient(
+        rgba(30, 96, 192, 1) 20%,
+        rgba(34, 110, 221, 1) 100%,
+        rgba(21, 133, 203, 1) 100%
+      ); */
+  background-color: #205cb6;
   width: 12%;
   line-height: 50%;
 }
@@ -156,16 +160,25 @@ header .lat_lon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #1e60c0), color-stop(100%, #226edd), to(#1585cb));
-  background: linear-gradient(#1e60c0 20%, #226edd 100%, #1585cb 100%);
+  /* background: linear-gradient(
+      rgba(30, 96, 192, 1) 20%,
+      rgba(34, 110, 221, 1) 100%,
+      rgba(21, 133, 203, 1) 100%
+    ); */
+  background-color: #205cb6;
   margin-top: 10px;
 }
 
 body {
   color: #ffffff;
   background: #2a34b2;
-  background: -webkit-gradient(linear, left top, left bottom, from(#2a34b2), color-stop(35%, #1f5dbf), to(#1585cb));
-  background: linear-gradient(#2a34b2 0%, #1f5dbf 35%, #1585cb 100%);
+  /* background: linear-gradient(
+    rgba(42, 52, 178, 1) 0%,
+    rgba(31, 93, 191, 1) 35%,
+    rgba(21, 133, 203, 1) 100%
+  ); */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #2a34b2), color-stop(100%, #226edd), to(#1585cb));
+  background: linear-gradient(#2a34b2 10%, #226edd 100%, #1585cb 100%);
 }
 
 body .container {
