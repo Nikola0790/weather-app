@@ -34,6 +34,7 @@ function App() {
   const [longitude, setLongitude] = useState({});
   const [dataNext5Days, setDataNext5Days] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [numNextDay, setNumNextDay] = useState("");
 
   useEffect(() => {
     if (cityAsParametr === "") {
@@ -87,6 +88,8 @@ function App() {
   if (data.cod == 404) {
     return <p>{data.message}</p>;
   }
+
+  console.log(numNextDay);
   return (
     <div className="container">
       <Router>
@@ -97,7 +100,10 @@ function App() {
           nameByGeo={nameByGeo}
         />
         <Routes>
-          <Route path="/details" element={<Details data={data} />} />
+          <Route
+            path="/details"
+            element={<Details data={data} id={numNextDay} />}
+          />
           <Route
             path="/main"
             element={
@@ -105,6 +111,7 @@ function App() {
                 data={data}
                 dataNext5Days={dataNext5Days}
                 screenWidth={screenWidth}
+                setDay={setNumNextDay}
               />
             }
           />

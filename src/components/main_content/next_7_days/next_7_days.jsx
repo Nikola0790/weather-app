@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NextSevenDays = ({ data, screen }) => {
+const NextSevenDays = ({ data, screen, setNum }) => {
   return (
     <div className="next_7_box">
       {screen > 768 ? <p>Next 7 days</p> : <p>Next 5 days</p>}
@@ -36,10 +36,13 @@ const NextSevenDays = ({ data, screen }) => {
                   return "Sat";
               }
             };
+            const setDay = () => {
+              setNum(index);
+            };
 
             if (screen > 768) {
               return (
-                <Link to={"/details"} key={index}>
+                <Link to={"/details"} key={index} onClick={setDay}>
                   <div className="next_7">
                     <div>
                       <p>
@@ -110,7 +113,7 @@ const NextSevenDays = ({ data, screen }) => {
               }
             };
             return (
-              <Link to={"/details"} key={index}>
+              <Link to={"/details"} key={index} onClick={setDay}>
                 <div className="next_7">
                   <div>
                     <p>{day(dayNum)}</p>
