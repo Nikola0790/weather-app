@@ -17,7 +17,7 @@ const TodaysWeather = ({ data, screen }) => {
               let dateTime = item.dt_txt;
               let time = dateTime.split(" ")[1].split(":")[0];
               return (
-                <div className="small_box_weather">
+                <div className="small_box_weather" key={index}>
                   <p>{time} h</p>
                   <img
                     src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
@@ -46,7 +46,7 @@ const TodaysWeather = ({ data, screen }) => {
             let dateTime = item.dt_txt;
             let time = dateTime.split(" ")[1].split(":")[0];
             return (
-              <div className="small_box_weather">
+              <div className="small_box_weather" key={index}>
                 <p>{time} h</p>
                 <img
                   src={`http://openweathermap.org/img/wn/${icon}@2x.png`}

@@ -39,7 +39,7 @@ const NextSevenDays = ({ data, screen }) => {
 
             if (screen > 768) {
               return (
-                <Link to={"/details"}>
+                <Link to={"/details"} key={index}>
                   <div className="next_7">
                     <div>
                       <p>
@@ -83,27 +83,6 @@ const NextSevenDays = ({ data, screen }) => {
                 </Link>
               );
             }
-            /* return (
-              <div className="next_7">
-                <div>
-                  <p>
-                    {day(dayNum)} <br /> {date}/{month}
-                  </p>
-                </div>
-                <div>
-                  <img
-                    src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-                    alt="img"
-                  />
-                </div>
-                <div>
-                  <p>
-                    {minTemp} / {maxTemp}
-                    <span>&#176;</span>
-                  </p>
-                </div>
-              </div>
-            ); */
           }
           if (index !== 0 && index < 6) {
             const unixTime = item.dt;
@@ -131,7 +110,7 @@ const NextSevenDays = ({ data, screen }) => {
               }
             };
             return (
-              <Link to={"/details"}>
+              <Link to={"/details"} key={index}>
                 <div className="next_7">
                   <div>
                     <p>{day(dayNum)}</p>
