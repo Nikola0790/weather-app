@@ -1,6 +1,10 @@
 .next_7_box {
   margin-top: 100px;
   .next_7_container {
+    a {
+      text-decoration: none;
+      color: white;
+    }
     .next_7 {
       display: flex;
       justify-content: space-around;
@@ -21,9 +25,12 @@
       margin-top: 0;
       display: flex;
       justify-content: space-between;
+      a {
+        width: 18%;
+      }
       .next_7 {
         flex-direction: column;
-        width: 18%;
+        width: 100%;
         img {
           width: 80%;
         }

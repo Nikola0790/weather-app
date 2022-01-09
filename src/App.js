@@ -87,8 +87,6 @@ function App() {
   if (data.cod == 404) {
     return <p>{data.message}</p>;
   }
-  console.log(data);
-  console.log(dataNext5Days);
   return (
     <div className="container">
       <Router>
@@ -99,7 +97,7 @@ function App() {
           nameByGeo={nameByGeo}
         />
         <Routes>
-          <Route path="/details" element={<Details />} />
+          <Route path="/details" element={<Details data={data} />} />
           <Route
             path="/main"
             element={
