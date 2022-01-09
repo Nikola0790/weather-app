@@ -28,9 +28,11 @@ function App() {
   const [latitude, setLatitude] = useState({});
   const [longitude, setLongitude] = useState({});
   const [dataNext5Days, setDataNext5Days] = useState("");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (cityAsParametr === "") {
+      setScreenWidth(window.innerWidth);
       getAllDataByGeolocation(latitude, longitude).then((response) =>
         setData(response)
       );
@@ -41,6 +43,7 @@ function App() {
         setDataNext5Days(response);
       });
     } else {
+      setScreenWidth(window.innerWidth);
       getCurrentDataByCityName(cityAsParametr).then((response) => {
         setCityNameSearch({
           name: response.name,
@@ -90,8 +93,8 @@ function App() {
         nameByGeo={nameByGeo}
       />
       <CurrentTempAndStats data={data} />
-      <TodaysWeather data={dataNext5Days} />
-      <NextSevenDays data={data} />
+      <TodaysWeather data={dataNext5Days} screen={screenWidth} />
+      <NextSevenDays data={data} screen={screenWidth} />
       <div className="App"></div>
     </div>
   );
