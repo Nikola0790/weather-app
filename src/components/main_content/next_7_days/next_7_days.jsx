@@ -1,9 +1,7 @@
-const NextSevenDays = ({ data }) => {
-  console.log(data);
-  const screenWidth = window.innerWidth; // move to App.js and pass here through props
+const NextSevenDays = ({ data, screen }) => {
   return (
     <div className="next_7_box">
-      {screenWidth > 768 ? <p>Next 7 days</p> : <p>Next 5 days</p>}
+      {screen > 768 ? <p>Next 7 days</p> : <p>Next 5 days</p>}
       <div className="next_7_container">
         {data.daily.map((item, index) => {
           if (index !== 0) {
@@ -37,7 +35,7 @@ const NextSevenDays = ({ data }) => {
               }
             };
 
-            if (screenWidth > 768) {
+            if (screen > 768) {
               return (
                 <div className="next_7">
                   <div>

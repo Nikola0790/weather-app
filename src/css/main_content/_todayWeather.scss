@@ -22,5 +22,10 @@
     margin-top: 0;
     border-bottom: 1px solid rgb(208, 208, 208);
     padding-bottom: 15px;
+    .order_box {
+      .small_box_weather {
+        width: 18%;
+      }
+    }
   }
 }

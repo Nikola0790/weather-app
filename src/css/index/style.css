@@ -217,6 +217,9 @@ header .searchBox {
     border-bottom: 1px solid #d0d0d0;
     padding-bottom: 15px;
   }
+  .box_todays_weather .order_box .small_box_weather {
+    width: 18%;
+  }
 }
 
 .next_7_box {
