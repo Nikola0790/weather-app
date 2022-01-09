@@ -13,9 +13,14 @@ import {
 } from "./service/weather_data_next_5_days/service_weather_data_next_5_days";
 import { useEffect, useState } from "react";
 import Header from "./components/header/header";
-import CurrentTempAndStats from "./components/main_content/current_temperature_and_stats/current_temp";
-import TodaysWeather from "./components/main_content/weather_by_hour/todayWeather";
-import NextSevenDays from "./components/main_content/next_7_days/next_7_days";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Details from "./components/forecast_details/forecastDetails";
+import AllComponets from "./components/main_content/allMainComponents/allcopmonents";
 
 function App() {
   const [data, setData] = useState("");
@@ -86,16 +91,28 @@ function App() {
   console.log(dataNext5Days);
   return (
     <div className="container">
-      <Header
-        setCity={setCityAsParametr}
-        data={data}
-        name={cityNameSearch}
-        nameByGeo={nameByGeo}
-      />
-      <CurrentTempAndStats data={data} />
-      <TodaysWeather data={dataNext5Days} screen={screenWidth} />
-      <NextSevenDays data={data} screen={screenWidth} />
-      <div className="App"></div>
+      <Router>
+        <Header
+          setCity={setCityAsParametr}
+          data={data}
+          name={cityNameSearch}
+          nameByGeo={nameByGeo}
+        />
+        <Routes>
+          <Route path="/details" element={<Details />} />
+          <Route
+            path="/main"
+            element={
+              <AllComponets
+                data={data}
+                dataNext5Days={dataNext5Days}
+                screenWidth={screenWidth}
+              />
+            }
+          />
+          <Route path="/" element={<Navigate to="/main" />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

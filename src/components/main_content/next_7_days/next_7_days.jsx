@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NextSevenDays = ({ data, screen }) => {
   return (
     <div className="next_7_box">
@@ -37,46 +39,48 @@ const NextSevenDays = ({ data, screen }) => {
 
             if (screen > 768) {
               return (
-                <div className="next_7">
-                  <div>
-                    <p>
-                      {day(dayNum)} <br /> {date}/{month}
-                    </p>
+                <Link to={"/details"}>
+                  <div className="next_7">
+                    <div>
+                      <p>
+                        {day(dayNum)} <br /> {date}/{month}
+                      </p>
+                    </div>
+                    <div>
+                      <img
+                        src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                        alt="img"
+                      />
+                    </div>
+                    <div>
+                      <p>
+                        {minTemp}
+                        <span>&#176;</span> <br /> Low
+                      </p>
+                    </div>
+                    <div>
+                      <p>
+                        {maxTemp}
+                        <span>&#176;</span> <br /> High
+                      </p>
+                    </div>
+                    <div className="hidden">
+                      <p>
+                        {chancePrecipitation} % <br /> Precipitation
+                      </p>
+                    </div>
+                    <div className="hidden">
+                      <p>
+                        {windSpeed} m/s <br /> Wind
+                      </p>
+                    </div>
+                    <div className="hidden">
+                      <p>
+                        {uvIndex} <br /> UV index
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <img
-                      src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-                      alt="img"
-                    />
-                  </div>
-                  <div>
-                    <p>
-                      {minTemp}
-                      <span>&#176;</span> <br /> Low
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      {maxTemp}
-                      <span>&#176;</span> <br /> High
-                    </p>
-                  </div>
-                  <div className="hidden">
-                    <p>
-                      {chancePrecipitation} % <br /> Precipitation
-                    </p>
-                  </div>
-                  <div className="hidden">
-                    <p>
-                      {windSpeed} m/s <br /> Wind
-                    </p>
-                  </div>
-                  <div className="hidden">
-                    <p>
-                      {uvIndex} <br /> UV index
-                    </p>
-                  </div>
-                </div>
+                </Link>
               );
             }
             /* return (
@@ -127,23 +131,25 @@ const NextSevenDays = ({ data, screen }) => {
               }
             };
             return (
-              <div className="next_7">
-                <div>
-                  <p>{day(dayNum)}</p>
+              <Link to={"/details"}>
+                <div className="next_7">
+                  <div>
+                    <p>{day(dayNum)}</p>
+                  </div>
+                  <div>
+                    <img
+                      src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                      alt="img"
+                    />
+                  </div>
+                  <div>
+                    <p>
+                      {minTemp} / {maxTemp}
+                      <span>&#176;</span>
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <img
-                    src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-                    alt="img"
-                  />
-                </div>
-                <div>
-                  <p>
-                    {minTemp} / {maxTemp}
-                    <span>&#176;</span>
-                  </p>
-                </div>
-              </div>
+              </Link>
             );
           }
         })}
