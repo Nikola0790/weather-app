@@ -27,39 +27,79 @@ const Details = ({ data, id }) => {
   const windDirection = dayData[0].wind_deg;
 
   return (
-    <div>
-      <div>
-        <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="" />
-        <p>{iconDescription}</p>
+    <div className="all_details">
+      <div className="details_container">
+        <div className="box_img">
+          <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="" />
+          <p>{iconDescription}</p>
+        </div>
+        <div className="box_details">
+          <div className="box_max_min">
+            <p>
+              {tempMax} <br />
+              Max
+            </p>
+            <p>
+              {tempMin} <br />
+              Min
+            </p>
+          </div>
+          <div className="box_details_2">
+            <div>
+              <p>
+                {tempDay} <br /> Day
+              </p>
+              <p>
+                {tempNight} <br />
+                Night
+              </p>
+              <p>
+                {tempMorning} <br />
+                Morning
+              </p>
+              <p>
+                {tempEve} <br />
+                Evening
+              </p>
+            </div>
+            <div>
+              <p>
+                {feelsDayTemp} <br /> Feels
+              </p>
+              <p>
+                {feelsNightTemp}
+                <br /> Feels
+              </p>
+              <p>
+                {feelsMornTemp} <br /> Feels
+              </p>
+              <p>
+                {feelsEveTemp}
+                <br /> Feels
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>Temperature</p>
+      <div className="details_container2">
         <p>
-          {tempDay} <br /> Day
+          {humidity} % <br /> Humidity
         </p>
         <p>
-          {tempNight} <br />
-          Night
+          {chanceOfPrecipitation} % <br /> Chance of precipitation
         </p>
         <p>
-          {tempMax} <br />
-          Max
+          {pressure} <br /> Pressure
         </p>
         <p>
-          {tempMin} <br />
-          Min
+          {uvIndex} <br /> UV
         </p>
         <p>
-          {tempMorning} <br />
-          Morning
+          {windSpeed} <br /> Wind speed
         </p>
         <p>
-          {tempEve} <br />
-          Evening
+          {windDirection} <br /> Wind direction
         </p>
-      </div>
-      <div>
-        <p>Feels like</p>
       </div>
     </div>
   );

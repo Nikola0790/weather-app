@@ -112,6 +112,11 @@ const NextSevenDays = ({ data, screen, setNum }) => {
                   return "Sat";
               }
             };
+
+            const setDay = () => {
+              setNum(index);
+            };
+
             return (
               <Link to={"/details"} key={index} onClick={setDay}>
                 <div className="next_7">

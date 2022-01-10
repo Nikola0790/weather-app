@@ -1,4 +1,27 @@
-const Header = ({ setCity, data, name, nameByGeo }) => {
+const Header = ({ setCity, data, name, nameByGeo, id }) => {
+  let dayData;
+  let unixTime;
+  let makeDate;
+  let monthSpec;
+  let dateSpec;
+  let dayNumSpec;
+
+  if (id !== "") {
+    dayData = data.daily.filter((item, index) => {
+      if (index === id) {
+        return item;
+      }
+    });
+  }
+
+  if (dayData !== undefined) {
+    unixTime = dayData[0].dt;
+    makeDate = new Date(unixTime * 1000);
+    monthSpec = makeDate.getMonth() + 1;
+    dateSpec = makeDate.getDate();
+    dayNumSpec = makeDate.getDay();
+  }
+  console.log(unixTime);
   const cityName = (event) => {
     if (event.key === "Enter") {
       setCity(event.target.value);
@@ -90,9 +113,15 @@ const Header = ({ setCity, data, name, nameByGeo }) => {
         ) : (
           <p className="cityName">{nameByGeo}</p>
         )}
-        <p className="date">
-          {day(getDay)} {getDate} {month(getMonth)}
-        </p>
+        {dayData !== undefined ? (
+          <p>
+            {day(dayNumSpec)} {dateSpec} {month(monthSpec)}
+          </p>
+        ) : (
+          <p className="date">
+            {day(getDay)} {getDate} {month(getMonth)}
+          </p>
+        )}
       </div>
       <div className="grid">
         <p className="lat_lon">

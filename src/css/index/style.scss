@@ -2,16 +2,11 @@
 @import "../main_content/styleCurrentTemp";
 @import "../main_content/todayWeather";
 @import "../main_content/next7";
+@import "../forecast_details/forecastDetails";
 @import "../variables/variables";
 
 body {
   color: $fontColor;
-  background: rgb(42, 52, 178);
-  /* background: linear-gradient(
-    rgba(42, 52, 178, 1) 0%,
-    rgba(31, 93, 191, 1) 35%,
-    rgba(21, 133, 203, 1) 100%
-  ); */
   background: linear-gradient(
     rgba(42, 52, 178, 1) 10%,
     rgba(34, 110, 221, 1) 100%,

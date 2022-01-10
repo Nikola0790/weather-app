@@ -89,7 +89,6 @@ function App() {
     return <p>{data.message}</p>;
   }
 
-  console.log(numNextDay);
   return (
     <div className="container">
       <Router>
@@ -98,6 +97,7 @@ function App() {
           data={data}
           name={cityNameSearch}
           nameByGeo={nameByGeo}
+          id={numNextDay}
         />
         <Routes>
           <Route
@@ -112,6 +112,7 @@ function App() {
                 dataNext5Days={dataNext5Days}
                 screenWidth={screenWidth}
                 setDay={setNumNextDay}
+                resetId={setNumNextDay}
               />
             }
           />
