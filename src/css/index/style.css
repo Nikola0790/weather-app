@@ -276,7 +276,12 @@ header .searchBox {
   }
 }
 
-.details_container {
+.all_details .text_gray {
+  font-size: 18px;
+  color: #cecccc;
+}
+
+.all_details .details_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -286,7 +291,7 @@ header .searchBox {
   margin-top: 100px;
 }
 
-.details_container .box_img {
+.all_details .details_container .box_img {
   width: 150px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -300,11 +305,11 @@ header .searchBox {
   /* line-height: 8px; */
 }
 
-.details_container .box_img p:first-letter {
+.all_details .details_container .box_img p:first-letter {
   text-transform: capitalize;
 }
 
-.details_container .box_details {
+.all_details .details_container .box_details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,10 +320,10 @@ header .searchBox {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 26px;
+  font-size: 24px;
 }
 
-.details_container .box_details .box_max_min {
+.all_details .details_container .box_details .box_max_min {
   width: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -329,7 +334,7 @@ header .searchBox {
           flex-direction: column;
 }
 
-.details_container .box_details_2 {
+.all_details .details_container .box_details_2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -341,7 +346,7 @@ header .searchBox {
   text-align: center;
 }
 
-.details_container .box_details_2 div {
+.all_details .details_container .box_details_2 div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -350,11 +355,11 @@ header .searchBox {
           justify-content: space-between;
 }
 
-.details_container .box_details_2 div p {
+.all_details .details_container .box_details_2 div p {
   width: 20%;
 }
 
-.details_container2 {
+.all_details .details_container2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -362,7 +367,18 @@ header .searchBox {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 100px;
-  font-size: 26px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.all_details .details_container3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 100px;
+  font-size: 22px;
   text-align: center;
 }
 
