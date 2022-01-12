@@ -20,11 +20,90 @@ const Details = ({ data, id }) => {
   const feelsEveTemp = Math.round(dayData[0].feels_like.eve);
   const feelsNightTemp = Math.round(dayData[0].feels_like.night);
   const humidity = dayData[0].humidity;
-  const chanceOfPrecipitation = dayData[0].pop * 100;
+  const chanceOfPrecipitation = Math.round(dayData[0].pop * 100);
   const pressure = dayData[0].pressure;
-  const uvIndex = dayData[0].uvi;
+  const uvIndex = Math.round(dayData[0].uvi);
   const windSpeed = dayData[0].wind_speed;
-  const windDirection = dayData[0].wind_deg;
+  const windDirectionDegree = dayData[0].wind_deg;
+  // sunrise
+  const sunriseUnixTimestamp = dayData[0].sunrise + data.timezone_offset - 3600;
+  const dateSunrise = new Date(sunriseUnixTimestamp * 1000);
+  const hoursSunrise = dateSunrise.getHours();
+  const minutesSunrise = dateSunrise.getMinutes();
+  // sunset
+  const sunsetUnixTimestamp = dayData[0].sunset + data.timezone_offset - 3600;
+  const dateSunset = new Date(sunsetUnixTimestamp * 1000);
+  const hoursSunset = dateSunset.getHours();
+  const minutesSunset = dateSunset.getMinutes();
+  // moonrise
+  const moonriseUnixTimestamp =
+    dayData[0].moonrise + data.timezone_offset - 3600;
+  const dateMoonrise = new Date(moonriseUnixTimestamp * 1000);
+  const hoursMoonrise = dateMoonrise.getHours();
+  const minutesMoonrise = dateMoonrise.getMinutes();
+  // moonset
+  const moonsetUnixTimestamp = dayData[0].moonset + data.timezone_offset - 3600;
+  const dateMoonset = new Date(moonsetUnixTimestamp * 1000);
+  const hoursMoonset = dateMoonset.getHours();
+  const minutesMoonset = dateMoonset.getMinutes();
+  // moon phase
+  const moonphaseNum = dayData[0].moon_phase;
+  let windDirection;
+  let uvIndexCategory;
+  let moonphase;
+
+  const checkMoon = (num) => {
+    if (num === 0 || num === 1) {
+      return (moonphase = "New moon");
+    } else if (num === 0.25) {
+      return (moonphase = "First quarter moon");
+    } else if (num === 0.5) {
+      return (moonphase = "Full moon");
+    } else if (num === 0.75) {
+      return (moonphase = "Last quarter moon");
+    } else if (num > 0 && num < 0.25) {
+      return (moonphase = "Waxing crescent");
+    } else if (num > 0.25 && num < 0.5) {
+      return (moonphase = "Waxing gibous");
+    } else if (num > 0.5 && num < 0.75) {
+      return (moonphase = "Waning gibous");
+    } else if (num > 0.75 && num < 1) {
+      return (moonphase = "Waning crescent");
+    }
+  };
+
+  if (
+    (windDirectionDegree >= 337 && windDirectionDegree <= 360) ||
+    windDirectionDegree <= 23
+  ) {
+    windDirection = "North";
+  } else if (windDirectionDegree >= 24 && windDirectionDegree <= 68) {
+    windDirection = "Northeast";
+  } else if (windDirectionDegree >= 69 && windDirectionDegree <= 113) {
+    windDirection = "East";
+  } else if (windDirectionDegree >= 114 && windDirectionDegree <= 158) {
+    windDirection = "Southeast";
+  } else if (windDirectionDegree >= 159 && windDirectionDegree <= 203) {
+    windDirection = "South";
+  } else if (windDirectionDegree >= 204 && windDirectionDegree <= 248) {
+    windDirection = "Southwest";
+  } else if (windDirectionDegree >= 249 && windDirectionDegree <= 293) {
+    windDirection = "West";
+  } else if (windDirectionDegree >= 294 && windDirectionDegree <= 336) {
+    windDirection = "Northwest";
+  }
+
+  if (uvIndex <= 2) {
+    uvIndexCategory = "Low";
+  } else if (uvIndex > 2 && uvIndex <= 5) {
+    uvIndexCategory = "Medium";
+  } else if (uvIndex > 5 && uvIndex <= 7) {
+    uvIndexCategory = "High";
+  } else if (uvIndex > 7 && uvIndex <= 10) {
+    uvIndexCategory = "Very high";
+  } else if (uvIndex > 10) {
+    uvIndexCategory = "Extremely high";
+  }
 
   return (
     <div className="all_details">
@@ -36,46 +115,59 @@ const Details = ({ data, id }) => {
         <div className="box_details">
           <div className="box_max_min">
             <p>
-              {tempMax} <br />
-              Max
+              {tempMax}
+              <span>&#176;</span> <br />
+              <span className="text_gray">Max</span>
             </p>
             <p>
-              {tempMin} <br />
-              Min
+              {tempMin}
+              <span>&#176;</span> <br />
+              <span className="text_gray">Min</span>
             </p>
           </div>
           <div className="box_details_2">
             <div>
               <p>
-                {tempDay} <br /> Day
+                {tempDay}
+                <span>&#176;</span> <br />{" "}
+                <span className="text_gray">Day</span>
               </p>
               <p>
-                {tempNight} <br />
-                Night
+                {tempNight}
+                <span>&#176;</span> <br />
+                <span className="text_gray">Night</span>
               </p>
               <p>
-                {tempMorning} <br />
-                Morning
+                {tempMorning}
+                <span>&#176;</span> <br />
+                <span className="text_gray">Morning</span>
               </p>
               <p>
-                {tempEve} <br />
-                Evening
+                {tempEve}
+                <span>&#176;</span> <br />
+                <span className="text_gray">Evening</span>
               </p>
             </div>
             <div>
               <p>
-                {feelsDayTemp} <br /> Feels
+                {feelsDayTemp}
+                <span>&#176;</span> <br />{" "}
+                <span className="text_gray">Feels like</span>
               </p>
               <p>
                 {feelsNightTemp}
-                <br /> Feels
+                <span>&#176;</span>
+                <br /> <span className="text_gray">Feels like</span>
               </p>
               <p>
-                {feelsMornTemp} <br /> Feels
+                {feelsMornTemp}
+                <span>&#176;</span> <br />{" "}
+                <span className="text_gray">Feels like</span>
               </p>
               <p>
                 {feelsEveTemp}
-                <br /> Feels
+                <span>&#176;</span>
+                <br /> <span className="text_gray">Feels like</span>
               </p>
             </div>
           </div>
@@ -83,22 +175,53 @@ const Details = ({ data, id }) => {
       </div>
       <div className="details_container2">
         <p>
-          {humidity} % <br /> Humidity
+          {humidity} % <br /> <span className="text_gray">Humidity</span>
         </p>
         <p>
-          {chanceOfPrecipitation} % <br /> Chance of precipitation
+          {chanceOfPrecipitation} % <br />
+          <span className="text_gray">Chance of precipitation</span>
         </p>
         <p>
-          {pressure} <br /> Pressure
+          {pressure} mBar
+          <br /> <span className="text_gray">Pressure</span>
         </p>
         <p>
-          {uvIndex} <br /> UV
+          {uvIndexCategory}, {uvIndex} <br />
+          <span className="text_gray">UV index</span>
         </p>
         <p>
-          {windSpeed} <br /> Wind speed
+          {windSpeed} m/s <br /> <span className="text_gray">Wind speed</span>
         </p>
         <p>
-          {windDirection} <br /> Wind direction
+          From {windDirection} <br />
+          <span className="text_gray">Wind direction</span>
+        </p>
+      </div>
+      <div className="details_container3">
+        <p>
+          {hoursSunrise}h {minutesSunrise}m
+          <br />
+          <span className="text_gray">Sunrise</span>
+        </p>
+        <p>
+          {hoursSunset}h {minutesSunset}m
+          <br />
+          <span className="text_gray">Sunset</span>
+        </p>
+        <p>
+          {hoursMoonrise}h {minutesMoonrise}m
+          <br />
+          <span className="text_gray">Moonrise</span>
+        </p>
+        <p>
+          {hoursMoonset}h {minutesMoonset}m
+          <br />
+          <span className="text_gray">Moonset</span>
+        </p>
+        <p>
+          {checkMoon(moonphaseNum)}
+          <br />
+          <span className="text_gray">Moon phase</span>
         </p>
       </div>
     </div>
