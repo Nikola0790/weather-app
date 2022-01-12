@@ -25,29 +25,35 @@ import AllComponets from "./components/main_content/allMainComponents/allcopmone
 function App() {
   const [data, setData] = useState("");
   const [cityAsParametr, setCityAsParametr] = useState("");
-  const [nameByGeo, setNameByGeo] = useState({});
+  const [nameByGeo, setNameByGeo] = useState([]);
   const [cityNameSearch, setCityNameSearch] = useState({
     name: "",
     country: "",
   });
-  const [latitude, setLatitude] = useState({});
-  const [longitude, setLongitude] = useState({});
+  const [latitude, setLatitude] = useState([]);
+  const [longitude, setLongitude] = useState([]);
   const [dataNext5Days, setDataNext5Days] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [numNextDay, setNumNextDay] = useState("");
 
   useEffect(() => {
     if (cityAsParametr === "") {
+      console.log(longitude, latitude);
       setScreenWidth(window.innerWidth);
-      getAllDataByGeolocation(latitude, longitude).then((response) =>
-        setData(response)
-      );
-      getLocationNameByCordinates(latitude, longitude).then((response) => {
-        setNameByGeo(response[0].name);
-      });
-      getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
-        setDataNext5Days(response);
-      });
+      if (typeof latitude === "number" && typeof longitude === "number") {
+        getAllDataByGeolocation(latitude, longitude).then((response) =>
+          setData(response)
+        );
+        getLocationNameByCordinates(latitude, longitude).then((response) => {
+          console.log(response);
+          setNameByGeo(response[0].name);
+        });
+        getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
+          setDataNext5Days(response);
+        });
+      } else {
+        console.log("loading");
+      }
     } else {
       setScreenWidth(window.innerWidth);
       getCurrentDataByCityName(cityAsParametr).then((response) => {
