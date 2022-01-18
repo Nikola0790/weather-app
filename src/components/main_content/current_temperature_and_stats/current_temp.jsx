@@ -1,4 +1,4 @@
-const CurrentTempAndStats = ({ data }) => {
+const CurrentTempAndStats = ({ data, airData }) => {
   if (data === "" || data.cod == 400) {
     return <p>Loading</p>;
   } else {
@@ -25,6 +25,8 @@ const CurrentTempAndStats = ({ data }) => {
     let hoursSunset = dateSunset.getHours();
     let minutesSunset = dateSunset.getMinutes();
     let secondsSunset = dateSunset.getSeconds();
+    const airPollutionIndex = airData.list[0].main.aqi;
+    let airPollutionDescription;
 
     if (uvIndex <= 2) {
       uvIndexCategory = "Low";
@@ -36,6 +38,24 @@ const CurrentTempAndStats = ({ data }) => {
       uvIndexCategory = "Very high";
     } else if (uvIndex > 10) {
       uvIndexCategory = "Extremely high";
+    }
+
+    switch (airPollutionIndex) {
+      case 1:
+        airPollutionDescription = "Good";
+        break;
+      case 2:
+        airPollutionDescription = "Fair";
+        break;
+      case 3:
+        airPollutionDescription = "Moderate";
+        break;
+      case 4:
+        airPollutionDescription = "Poor";
+        break;
+      case 5:
+        airPollutionDescription = "Hazardous";
+        break;
     }
 
     return (
@@ -60,6 +80,12 @@ const CurrentTempAndStats = ({ data }) => {
                 Feels like {feelsLike}
                 <span>&#176;</span>
               </p>
+            </div>
+          </div>
+          <div className="airPollution">
+            <div>
+              <p>{airPollutionDescription}</p>
+              <p>Air quality</p>
             </div>
           </div>
         </div>

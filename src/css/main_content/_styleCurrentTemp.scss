@@ -8,7 +8,7 @@
     text-align: center;
     border-right: 1px solid rgb(208, 208, 208);
     .left_box {
-      width: 50%;
+      width: 40%;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -22,13 +22,25 @@
     .right_box {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      width: 50%;
+      align-items: center;
+      width: 30%;
       div {
         margin-left: 10px;
         p:first-child {
           font-size: 58px;
           margin: 18px 0 35px 0;
+        }
+      }
+    }
+    .airPollution {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      div {
+        p:first-child {
+          font-size: 32px;
+          margin: 28px 0 55px 0;
         }
       }
     }
@@ -60,6 +72,16 @@
   .box_weather_data_and_stats {
     .current_data {
       width: 35%;
+      .airPollution {
+        align-items: center;
+        div {
+          margin: 0 10px;
+          p:first-child {
+            font-size: 16px;
+            margin: 40px 0 62px 0;
+          }
+        }
+      }
     }
     .data_for_all_day {
       width: 65%;
@@ -74,6 +96,13 @@
       width: 100%;
       border-right: none;
       border-bottom: 1px solid rgb(208, 208, 208);
+      .right_box {
+        align-items: center;
+      }
+      .airPollution {
+        align-items: flex-start;
+        margin-left: 10px;
+      }
     }
     .data_for_all_day {
       width: 100%;

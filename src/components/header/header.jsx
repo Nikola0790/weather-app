@@ -21,7 +21,7 @@ const Header = ({ setCity, data, name, nameByGeo, id }) => {
     dateSpec = makeDate.getDate();
     dayNumSpec = makeDate.getDay();
   }
-  console.log(unixTime);
+
   const cityName = (event) => {
     if (event.key === "Enter") {
       setCity(event.target.value);

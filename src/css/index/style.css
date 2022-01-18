@@ -84,7 +84,7 @@ header .searchBox {
 }
 
 .box_weather_data_and_stats .current_data .left_box {
-  width: 50%;
+  width: 40%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,10 +113,10 @@ header .searchBox {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
 }
 
 .box_weather_data_and_stats .current_data .right_box div {
@@ -126,6 +126,25 @@ header .searchBox {
 .box_weather_data_and_stats .current_data .right_box div p:first-child {
   font-size: 58px;
   margin: 18px 0 35px 0;
+}
+
+.box_weather_data_and_stats .current_data .airPollution {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.box_weather_data_and_stats .current_data .airPollution div p:first-child {
+  font-size: 32px;
+  margin: 28px 0 55px 0;
 }
 
 .box_weather_data_and_stats .data_for_all_day {
@@ -158,6 +177,18 @@ header .searchBox {
   .box_weather_data_and_stats .current_data {
     width: 35%;
   }
+  .box_weather_data_and_stats .current_data .airPollution {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .box_weather_data_and_stats .current_data .airPollution div {
+    margin: 0 10px;
+  }
+  .box_weather_data_and_stats .current_data .airPollution div p:first-child {
+    font-size: 16px;
+    margin: 40px 0 62px 0;
+  }
   .box_weather_data_and_stats .data_for_all_day {
     width: 65%;
   }
@@ -174,6 +205,17 @@ header .searchBox {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #d0d0d0;
+  }
+  .box_weather_data_and_stats .current_data .right_box {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .box_weather_data_and_stats .current_data .airPollution {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-left: 10px;
   }
   .box_weather_data_and_stats .data_for_all_day {
     width: 100%;

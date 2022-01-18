@@ -11,6 +11,7 @@ import {
   getDataFor_5_DaysByCityName,
   getDataFor_5_DaysByGeolocation,
 } from "./service/weather_data_next_5_days/service_weather_data_next_5_days";
+import { getAirPollutionData } from "./service/air_pollution_data/airPollution";
 import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import {
@@ -35,22 +36,24 @@ function App() {
   const [dataNext5Days, setDataNext5Days] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [numNextDay, setNumNextDay] = useState("");
+  const [airPollution, setAirPollution] = useState([]);
 
   useEffect(() => {
     if (cityAsParametr === "") {
-      console.log(longitude, latitude);
       setScreenWidth(window.innerWidth);
       if (typeof latitude === "number" && typeof longitude === "number") {
         getAllDataByGeolocation(latitude, longitude).then((response) =>
           setData(response)
         );
         getLocationNameByCordinates(latitude, longitude).then((response) => {
-          console.log(response);
           setNameByGeo(response[0].name);
         });
         getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
           setDataNext5Days(response);
         });
+        getAirPollutionData(latitude, longitude).then((response) =>
+          setAirPollution(response)
+        );
       } else {
         console.log("loading");
       }
@@ -70,6 +73,9 @@ function App() {
         ).then((response) => {
           setDataNext5Days(response);
         });
+        getAirPollutionData(response.coord.lat, response.coord.lon).then(
+          (response) => setAirPollution(response)
+        );
       });
     }
   }, [latitude, longitude, cityAsParametr, nameByGeo]);
@@ -119,6 +125,7 @@ function App() {
                 screenWidth={screenWidth}
                 setDay={setNumNextDay}
                 resetId={setNumNextDay}
+                airPollution={airPollution}
               />
             }
           />

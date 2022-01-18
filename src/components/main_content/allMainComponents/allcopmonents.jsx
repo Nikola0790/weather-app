@@ -8,12 +8,13 @@ const AllComponets = ({
   screenWidth,
   setDay,
   resetId,
+  airPollution,
 }) => {
   // reset id num when we are on main page and date is right.
   resetId("");
   return (
     <>
-      <CurrentTempAndStats data={data} />
+      <CurrentTempAndStats data={data} airData={airPollution} />
       <TodaysWeather data={dataNext5Days} screen={screenWidth} />
       <NextSevenDays data={data} screen={screenWidth} setNum={setDay} />
     </>
