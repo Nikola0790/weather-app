@@ -173,56 +173,58 @@ const Details = ({ data, id }) => {
           </div>
         </div>
       </div>
-      <div className="details_container2">
-        <p>
-          {humidity} % <br /> <span className="text_gray">Humidity</span>
-        </p>
-        <p>
-          {chanceOfPrecipitation} % <br />
-          <span className="text_gray">Chance of precipitation</span>
-        </p>
-        <p>
-          {pressure} mBar
-          <br /> <span className="text_gray">Pressure</span>
-        </p>
-        <p>
-          {uvIndexCategory}, {uvIndex} <br />
-          <span className="text_gray">UV index</span>
-        </p>
-        <p>
-          {windSpeed} m/s <br /> <span className="text_gray">Wind speed</span>
-        </p>
-        <p>
-          From {windDirection} <br />
-          <span className="text_gray">Wind direction</span>
-        </p>
-      </div>
-      <div className="details_container3">
-        <p>
-          {hoursSunrise}h {minutesSunrise}m
-          <br />
-          <span className="text_gray">Sunrise</span>
-        </p>
-        <p>
-          {hoursSunset}h {minutesSunset}m
-          <br />
-          <span className="text_gray">Sunset</span>
-        </p>
-        <p>
-          {hoursMoonrise}h {minutesMoonrise}m
-          <br />
-          <span className="text_gray">Moonrise</span>
-        </p>
-        <p>
-          {hoursMoonset}h {minutesMoonset}m
-          <br />
-          <span className="text_gray">Moonset</span>
-        </p>
-        <p>
-          {checkMoon(moonphaseNum)}
-          <br />
-          <span className="text_gray">Moon phase</span>
-        </p>
+      <div className="box_flex_details">
+        <div className="details_container2">
+          <p>
+            {humidity} % <br /> <span className="text_gray">Humidity</span>
+          </p>
+          <p>
+            {chanceOfPrecipitation} % <br />
+            <span className="text_gray">Chance of precipitation</span>
+          </p>
+          <p>
+            {pressure} mBar
+            <br /> <span className="text_gray">Pressure</span>
+          </p>
+          <p>
+            {uvIndexCategory}, {uvIndex} <br />
+            <span className="text_gray">UV index</span>
+          </p>
+          <p>
+            {windSpeed} m/s <br /> <span className="text_gray">Wind speed</span>
+          </p>
+          <p>
+            From {windDirection} <br />
+            <span className="text_gray">Wind direction</span>
+          </p>
+        </div>
+        <div className="details_container3">
+          <p>
+            {hoursSunrise}h {minutesSunrise}m
+            <br />
+            <span className="text_gray">Sunrise</span>
+          </p>
+          <p>
+            {hoursSunset}h {minutesSunset}m
+            <br />
+            <span className="text_gray">Sunset</span>
+          </p>
+          <p>
+            {hoursMoonrise}h {minutesMoonrise}m
+            <br />
+            <span className="text_gray">Moonrise</span>
+          </p>
+          <p>
+            {hoursMoonset}h {minutesMoonset}m
+            <br />
+            <span className="text_gray">Moonset</span>
+          </p>
+          <p>
+            {checkMoon(moonphaseNum)}
+            <br />
+            <span className="text_gray">Moon phase</span>
+          </p>
+        </div>
       </div>
     </div>
   );
