@@ -1,12 +1,10 @@
 const Details = ({ data, id }) => {
-  console.log(data);
   const dayData = data.daily.filter((item, index) => {
     if (index === id) {
       return item;
     }
   });
 
-  console.log(dayData);
   const icon = dayData[0].weather[0].icon;
   const iconDescription = dayData[0].weather[0].description;
   const tempDay = Math.round(dayData[0].temp.day);

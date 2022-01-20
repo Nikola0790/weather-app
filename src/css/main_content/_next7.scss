@@ -24,12 +24,12 @@
     .next_7_container {
       margin-top: 0;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       a {
-        width: 18%;
+        width: 100%;
       }
       .next_7 {
-        flex-direction: column;
         width: 100%;
         img {
           width: 80%;

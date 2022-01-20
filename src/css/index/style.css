@@ -220,12 +220,24 @@ header .searchBox {
   .box_weather_data_and_stats .data_for_all_day {
     width: 100%;
     border-bottom: 1px solid #d0d0d0;
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+  .box_weather_data_and_stats .data_for_all_day .box_flex {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    margin: 10px 0;
+  }
+  .box_weather_data_and_stats .data_for_all_day .box_flex div:first-child {
+    margin: 0;
   }
   .box_weather_data_and_stats .data_for_all_day .box_flex .data_fs {
-    font-size: 16px;
+    font-size: 18px;
   }
   .box_weather_data_and_stats .data_for_all_day .box_flex p {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -296,18 +308,18 @@ header .searchBox {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
   .next_7_box .next_7_container a {
-    width: 18%;
+    width: 100%;
   }
   .next_7_box .next_7_container .next_7 {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
     width: 100%;
   }
   .next_7_box .next_7_container .next_7 img {
