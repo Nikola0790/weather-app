@@ -54,8 +54,6 @@ function App() {
         getAirPollutionData(latitude, longitude).then((response) =>
           setAirPollution(response)
         );
-      } else {
-        console.log("loading");
       }
     } else {
       setScreenWidth(window.innerWidth);
@@ -99,6 +97,10 @@ function App() {
 
   if (data.cod == 404) {
     return <p>{data.message}</p>;
+  }
+
+  if (nameByGeo === [] || cityNameSearch.name === "") {
+    return <p>LOADING</p>;
   }
 
   return (
