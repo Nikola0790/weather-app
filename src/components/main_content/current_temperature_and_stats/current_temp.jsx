@@ -25,8 +25,14 @@ const CurrentTempAndStats = ({ data, airData }) => {
     let hoursSunset = dateSunset.getHours();
     let minutesSunset = dateSunset.getMinutes();
     let secondsSunset = dateSunset.getSeconds();
-    const airPollutionIndex = airData.list[0].main.aqi;
+    let airPollutionIndex;
     let airPollutionDescription;
+
+    if (airData.list === undefined) {
+      airPollutionIndex = 0;
+    } else {
+      airPollutionIndex = airData.list[0].main.aqi;
+    }
 
     if (uvIndex <= 2) {
       uvIndexCategory = "Low";
@@ -56,6 +62,8 @@ const CurrentTempAndStats = ({ data, airData }) => {
       case 5:
         airPollutionDescription = "Hazardous";
         break;
+      default:
+        airPollutionDescription = "No data";
     }
 
     return (
