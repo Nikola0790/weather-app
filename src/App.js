@@ -86,7 +86,7 @@ function App() {
     setLongitude(longitude);
   }
   function errorr(error) {
-    alert(`ERROR(${error.code}): ${error.message}`);
+    console.log(`ERROR(${error.code}): ${error.message}`);
   }
 
   navigator.geolocation.getCurrentPosition(success, errorr);
