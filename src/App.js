@@ -76,7 +76,7 @@ function App() {
         );
       });
     }
-  }, [latitude, longitude, cityAsParametr, nameByGeo]);
+  }, [latitude, longitude, cityAsParametr, nameByGeo, cityNameSearch.name]);
 
   // take geolocation !!!
   function success(position) {
@@ -99,10 +99,11 @@ function App() {
     return <p>{data.message}</p>;
   }
 
-  if (nameByGeo === [] || cityNameSearch.name === "") {
+  /*   if (nameByGeo === [] || cityNameSearch.name === "") {
     return <p>LOADING</p>;
-  }
+  } */
 
+  console.log(nameByGeo);
   return (
     <div className="container">
       <Router>
