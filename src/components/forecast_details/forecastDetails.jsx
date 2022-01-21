@@ -110,69 +110,68 @@ const Details = ({ data, id }) => {
           <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="" />
           <p>{iconDescription}</p>
         </div>
-        <div className="box_details">
-          <div className="box_max_min">
-            <p>
-              {tempMax}
-              <span>&#176;</span> <br />
-              <span className="text_gray">Max</span>
-            </p>
-            <p>
-              {tempMin}
-              <span>&#176;</span> <br />
-              <span className="text_gray">Min</span>
-            </p>
-          </div>
-          <div className="box_details_2">
-            <div>
-              <p>
-                {tempDay}
-                <span>&#176;</span> <br />{" "}
-                <span className="text_gray">Day</span>
-              </p>
-              <p>
-                {tempNight}
-                <span>&#176;</span> <br />
-                <span className="text_gray">Night</span>
-              </p>
-              <p>
-                {tempMorning}
-                <span>&#176;</span> <br />
-                <span className="text_gray">Morning</span>
-              </p>
-              <p>
-                {tempEve}
-                <span>&#176;</span> <br />
-                <span className="text_gray">Evening</span>
-              </p>
-            </div>
-            <div>
-              <p>
-                {feelsDayTemp}
-                <span>&#176;</span> <br />{" "}
-                <span className="text_gray">Feels like</span>
-              </p>
-              <p>
-                {feelsNightTemp}
-                <span>&#176;</span>
-                <br /> <span className="text_gray">Feels like</span>
-              </p>
-              <p>
-                {feelsMornTemp}
-                <span>&#176;</span> <br />{" "}
-                <span className="text_gray">Feels like</span>
-              </p>
-              <p>
-                {feelsEveTemp}
-                <span>&#176;</span>
-                <br /> <span className="text_gray">Feels like</span>
-              </p>
-            </div>
-          </div>
+        <div className="box_max_min">
+          <p>
+            {tempMax}
+            <span>&#176;</span> <br />
+            <span className="text_gray">Max</span>
+          </p>
+          <p>
+            {tempMin}
+            <span>&#176;</span> <br />
+            <span className="text_gray">Min</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            {tempDay}
+            <span>&#176;</span> <br /> <span className="text_gray">Day</span>
+          </p>
+          <p>
+            {feelsDayTemp}
+            <span>&#176;</span> <br />{" "}
+            <span className="text_gray">Feels like</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            {tempNight}
+            <span>&#176;</span> <br />
+            <span className="text_gray">Night</span>
+          </p>
+          <p>
+            {feelsNightTemp}
+            <span>&#176;</span>
+            <br /> <span className="text_gray">Feels like</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            {tempMorning}
+            <span>&#176;</span> <br />
+            <span className="text_gray">Morning</span>
+          </p>
+          <p>
+            {feelsMornTemp}
+            <span>&#176;</span> <br />{" "}
+            <span className="text_gray">Feels like</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            {tempEve}
+            <span>&#176;</span> <br />
+            <span className="text_gray">Evening</span>
+          </p>
+          <p>
+            {feelsEveTemp}
+            <span>&#176;</span>
+            <br /> <span className="text_gray">Feels like</span>
+          </p>
         </div>
       </div>
       <div className="box_flex_details">
-        <div className="details_container2">
+        <div className="details_container23">
           <p>
             {humidity} % <br /> <span className="text_gray">Humidity</span>
           </p>
@@ -196,7 +195,7 @@ const Details = ({ data, id }) => {
             <span className="text_gray">Wind direction</span>
           </p>
         </div>
-        <div className="details_container3">
+        <div className="details_container23">
           <p>
             {hoursSunrise}h {minutesSunrise}m
             <br />
