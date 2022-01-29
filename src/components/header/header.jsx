@@ -1,10 +1,17 @@
-const Header = ({ setCity, data, name, nameByGeo, id }) => {
+import { useSelector } from "react-redux";
+
+const Header = ({ setCity, name, id }) => {
   let dayData;
   let unixTime;
   let makeDate;
   let monthSpec;
   let dateSpec;
   let dayNumSpec;
+
+  const data = useSelector((state) => state.allData.data);
+  const nameByGeo = useSelector(
+    (state) => state.cityNameByCoordinates.data[0].name
+  );
 
   if (id !== "") {
     dayData = data.daily.filter((item, index) => {

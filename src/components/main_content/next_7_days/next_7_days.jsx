@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const NextSevenDays = ({ data, screen, setNum }) => {
+const NextSevenDays = ({ screen, setNum }) => {
+  const data = useSelector((state) => state.allData.data);
+
   return (
     <div className="next_7_box">
       {screen > 768 ? <p>Next 7 days</p> : <p>Next 5 days</p>}

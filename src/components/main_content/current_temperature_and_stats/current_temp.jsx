@@ -1,5 +1,10 @@
-const CurrentTempAndStats = ({ data, airData }) => {
-  if (data === "" || data.cod == 400) {
+import { useSelector } from "react-redux";
+
+const CurrentTempAndStats = () => {
+  const airPollutionData = useSelector((state) => state.airPollution.data);
+  const data = useSelector((state) => state.allData.data);
+
+  if (data.length === 0) {
     return <p>Loading</p>;
   } else {
     const icon = data.current.weather[0].icon;
@@ -28,10 +33,10 @@ const CurrentTempAndStats = ({ data, airData }) => {
     let airPollutionIndex;
     let airPollutionDescription;
 
-    if (airData.list === undefined) {
+    if (airPollutionData === undefined || airPollutionData.length === 0) {
       airPollutionIndex = 0;
     } else {
-      airPollutionIndex = airData.list[0].main.aqi;
+      airPollutionIndex = airPollutionData.list[0].main.aqi;
     }
 
     if (uvIndex <= 2) {
