@@ -43,13 +43,14 @@ import {
   cityNameActionSuccess,
   cityNameActionFailure,
 } from "./redux/cityNameByCoordinates/cityNameActions";
+import {
+  actionAllDataByCityNameRequest,
+  actionAllDataByCityNameSuccess,
+  actionAllDataByCityNameFailure,
+} from "./redux/allDataByCityName/allDataByCityNameActions";
 
 function App() {
   const [cityAsParametr, setCityAsParametr] = useState("");
-  const [cityNameSearch, setCityNameSearch] = useState({
-    name: "",
-    country: "",
-  });
   const [latitude, setLatitude] = useState([]);
   const [longitude, setLongitude] = useState([]);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -57,6 +58,8 @@ function App() {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.allData.data);
+  const lat = useSelector((state) => state.allDataByCityName.data.lat);
+  const lon = useSelector((state) => state.allDataByCityName.data.lon);
 
   const fetchAirPollData = (lat, lon) => {
     return (dispatch) => {
@@ -95,7 +98,7 @@ function App() {
           dispatch(nextSevenDaysSuccess(data));
         })
         .catch((error) => {
-          dispatch(nextSevenDaysFailure(error));
+          dispatch(nextSevenDaysFailure(error.message));
         });
     };
   };
@@ -109,7 +112,27 @@ function App() {
           dispatch(cityNameActionSuccess(data));
         })
         .catch((error) => {
-          dispatch(cityNameActionFailure(error));
+          dispatch(cityNameActionFailure(error.message));
+        });
+    };
+  };
+
+  const fetchDataByCityName = (cityAsParametr) => {
+    return (dispatch) => {
+      dispatch(actionAllDataByCityNameRequest);
+      getCurrentDataByCityName(cityAsParametr)
+        .then((response) => {
+          dispatch(
+            actionAllDataByCityNameSuccess({
+              name: response.name,
+              country: response.sys.country,
+              lat: response.coord.lat,
+              lon: response.coord.lon,
+            })
+          );
+        })
+        .catch((error) => {
+          dispatch(actionAllDataByCityNameFailure(error.message));
         });
     };
   };
@@ -122,22 +145,18 @@ function App() {
         dispatch(fetchAirPollData(latitude, longitude));
         dispatch(fetchAllData(latitude, longitude));
         dispatch(fetchNextSevenDaysData(latitude, longitude));
+        dispatch(fetchDataByCityName(cityAsParametr));
       }
     } else {
       setScreenWidth(window.innerWidth);
-      getCurrentDataByCityName(cityAsParametr).then((response) => {
-        setCityNameSearch({
-          name: response.name,
-          country: response.sys.country,
-        });
-        dispatch(fetchAirPollData(response.coord.lat, response.coord.lon));
-        dispatch(fetchAllData(response.coord.lat, response.coord.lon));
-        dispatch(
-          fetchNextSevenDaysData(response.coord.lat, response.coord.lon)
-        );
-      });
+      dispatch(fetchDataByCityName(cityAsParametr));
+      if (lat !== undefined && lon !== undefined) {
+        dispatch(fetchAirPollData(lat, lon));
+        dispatch(fetchAllData(lat, lon));
+        dispatch(fetchNextSevenDaysData(lat, lon));
+      }
     }
-  }, [latitude, longitude, cityAsParametr]);
+  }, [latitude, longitude, cityAsParametr, lat, lon]);
 
   // take geolocation !!!
   function success(position) {
@@ -162,11 +181,7 @@ function App() {
   return (
     <div className="container">
       <Router>
-        <Header
-          setCity={setCityAsParametr}
-          name={cityNameSearch}
-          id={numNextDay}
-        />
+        <Header setCity={setCityAsParametr} id={numNextDay} />
         <Routes>
           <Route
             path="/details"
