@@ -1,10 +1,19 @@
-const Header = ({ setCity, data, name, nameByGeo, id }) => {
+import { useSelector } from "react-redux";
+
+const Header = ({ setCity, id }) => {
   let dayData;
   let unixTime;
   let makeDate;
   let monthSpec;
   let dateSpec;
   let dayNumSpec;
+
+  const data = useSelector((state) => state.allData.data);
+  const nameByGeo = useSelector(
+    (state) => state.cityNameByCoordinates.data[0].name
+  );
+  let name = useSelector((state) => state.allDataByCityName.data.name);
+  let country = useSelector((state) => state.allDataByCityName.data.country);
 
   if (id !== "") {
     dayData = data.daily.filter((item, index) => {
@@ -27,10 +36,10 @@ const Header = ({ setCity, data, name, nameByGeo, id }) => {
       setCity(event.target.value);
 
       // if we don't set "", we can't change the location name in the header
-      if (event.target.value === "") {
-        name.name = "";
-        name.country = "";
-      }
+      /*  if (event.target.value === "") {
+        name = "";
+        country = "";
+      } */
     }
   };
 
@@ -106,9 +115,9 @@ const Header = ({ setCity, data, name, nameByGeo, id }) => {
   return (
     <header>
       <div className="locationAndDate grid">
-        {data && name.name !== "" ? (
+        {data && name !== undefined ? (
           <p className="cityName">
-            {name.name}, {name.country}
+            {name}, {country}
           </p>
         ) : (
           <p className="cityName">{nameByGeo}</p>

@@ -22,61 +22,141 @@ import {
 } from "react-router-dom";
 import Details from "./components/forecast_details/forecastDetails";
 import AllComponets from "./components/main_content/allMainComponents/allcopmonents";
+import {
+  actionAirPollutionRequest,
+  actionAirPollutionSuccess,
+  actionAirPollutionFailure,
+} from "./redux/airPollution/pollutionActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  allDataSuccess,
+  allDataRequest,
+  allDataFailure,
+} from "./redux/allData/allDataActions";
+import {
+  nextSevenDaysFailure,
+  nextSevenDaysRequest,
+  nextSevenDaysSuccess,
+} from "./redux/nextSevenDays/nextSevenDaysActions";
+import {
+  cityNameActionRequest,
+  cityNameActionSuccess,
+  cityNameActionFailure,
+} from "./redux/cityNameByCoordinates/cityNameActions";
+import {
+  actionAllDataByCityNameRequest,
+  actionAllDataByCityNameSuccess,
+  actionAllDataByCityNameFailure,
+} from "./redux/allDataByCityName/allDataByCityNameActions";
 
 function App() {
-  const [data, setData] = useState("");
   const [cityAsParametr, setCityAsParametr] = useState("");
-  const [nameByGeo, setNameByGeo] = useState([]);
-  const [cityNameSearch, setCityNameSearch] = useState({
-    name: "",
-    country: "",
-  });
   const [latitude, setLatitude] = useState([]);
   const [longitude, setLongitude] = useState([]);
-  const [dataNext5Days, setDataNext5Days] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [numNextDay, setNumNextDay] = useState("");
-  const [airPollution, setAirPollution] = useState([]);
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.allData.data);
+  const lat = useSelector((state) => state.allDataByCityName.data.lat);
+  const lon = useSelector((state) => state.allDataByCityName.data.lon);
+
+  const fetchAirPollData = (lat, lon) => {
+    return (dispatch) => {
+      dispatch(actionAirPollutionRequest);
+      getAirPollutionData(lat, lon)
+        .then((response) => {
+          const data = response;
+          dispatch(actionAirPollutionSuccess(data));
+        })
+        .catch((error) => {
+          dispatch(actionAirPollutionFailure(error.message));
+        });
+    };
+  };
+
+  const fetchAllData = (lat, lon) => {
+    return (dispatch) => {
+      dispatch(allDataRequest);
+      getAllDataByGeolocation(lat, lon)
+        .then((response) => {
+          const data = response;
+          dispatch(allDataSuccess(data));
+        })
+        .catch((error) => {
+          dispatch(allDataFailure(error.message));
+        });
+    };
+  };
+
+  const fetchNextSevenDaysData = (lat, lon) => {
+    return (dispatch) => {
+      dispatch(nextSevenDaysRequest);
+      getDataFor_5_DaysByGeolocation(lat, lon)
+        .then((response) => {
+          const data = response;
+          dispatch(nextSevenDaysSuccess(data));
+        })
+        .catch((error) => {
+          dispatch(nextSevenDaysFailure(error.message));
+        });
+    };
+  };
+
+  const fetchCityNameByCoordinates = (lat, lon) => {
+    return (dispatch) => {
+      dispatch(cityNameActionRequest);
+      getLocationNameByCordinates(lat, lon)
+        .then((response) => {
+          const data = response;
+          dispatch(cityNameActionSuccess(data));
+        })
+        .catch((error) => {
+          dispatch(cityNameActionFailure(error.message));
+        });
+    };
+  };
+
+  const fetchDataByCityName = (cityAsParametr) => {
+    return (dispatch) => {
+      dispatch(actionAllDataByCityNameRequest);
+      getCurrentDataByCityName(cityAsParametr)
+        .then((response) => {
+          dispatch(
+            actionAllDataByCityNameSuccess({
+              name: response.name,
+              country: response.sys.country,
+              lat: response.coord.lat,
+              lon: response.coord.lon,
+            })
+          );
+        })
+        .catch((error) => {
+          dispatch(actionAllDataByCityNameFailure(error.message));
+        });
+    };
+  };
 
   useEffect(() => {
     if (cityAsParametr === "") {
       setScreenWidth(window.innerWidth);
       if (typeof latitude === "number" && typeof longitude === "number") {
-        getAllDataByGeolocation(latitude, longitude).then((response) =>
-          setData(response)
-        );
-        getLocationNameByCordinates(latitude, longitude).then((response) => {
-          setNameByGeo(response[0].name);
-        });
-        getDataFor_5_DaysByGeolocation(latitude, longitude).then((response) => {
-          setDataNext5Days(response);
-        });
-        getAirPollutionData(latitude, longitude).then((response) =>
-          setAirPollution(response)
-        );
+        dispatch(fetchCityNameByCoordinates(latitude, longitude));
+        dispatch(fetchAirPollData(latitude, longitude));
+        dispatch(fetchAllData(latitude, longitude));
+        dispatch(fetchNextSevenDaysData(latitude, longitude));
+        dispatch(fetchDataByCityName(cityAsParametr));
       }
     } else {
       setScreenWidth(window.innerWidth);
-      getCurrentDataByCityName(cityAsParametr).then((response) => {
-        setCityNameSearch({
-          name: response.name,
-          country: response.sys.country,
-        });
-        getAllDataByGeolocation(response.coord.lat, response.coord.lon).then(
-          (response) => setData(response)
-        );
-        getDataFor_5_DaysByGeolocation(
-          response.coord.lat,
-          response.coord.lon
-        ).then((response) => {
-          setDataNext5Days(response);
-        });
-        getAirPollutionData(response.coord.lat, response.coord.lon).then(
-          (response) => setAirPollution(response)
-        );
-      });
+      dispatch(fetchDataByCityName(cityAsParametr));
+      if (lat !== undefined && lon !== undefined) {
+        dispatch(fetchAirPollData(lat, lon));
+        dispatch(fetchAllData(lat, lon));
+        dispatch(fetchNextSevenDaysData(lat, lon));
+      }
     }
-  }, [latitude, longitude, cityAsParametr, nameByGeo]);
+  }, [latitude, longitude, cityAsParametr, lat, lon]);
 
   // take geolocation !!!
   function success(position) {
@@ -91,24 +171,17 @@ function App() {
 
   navigator.geolocation.getCurrentPosition(success, errorr);
 
-  if (data.cod === "400" || data === "") {
+  if (data.length === 0) {
     return <p>LOADING</p>;
   }
 
-  if (data.cod == 404) {
+  /*   if (data.cod == 404) {
     return <p>{data.message}</p>;
-  }
-
+  } */
   return (
     <div className="container">
       <Router>
-        <Header
-          setCity={setCityAsParametr}
-          data={data}
-          name={cityNameSearch}
-          nameByGeo={nameByGeo}
-          id={numNextDay}
-        />
+        <Header setCity={setCityAsParametr} id={numNextDay} />
         <Routes>
           <Route
             path="/details"
@@ -118,12 +191,9 @@ function App() {
             path="/main"
             element={
               <AllComponets
-                data={data}
-                dataNext5Days={dataNext5Days}
                 screenWidth={screenWidth}
                 setDay={setNumNextDay}
                 resetId={setNumNextDay}
-                airPollution={airPollution}
               />
             }
           />

@@ -1,5 +1,9 @@
-const TodaysWeather = ({ data, screen }) => {
-  if (data === "" || data.cod == 400) {
+import { useSelector } from "react-redux";
+
+const TodaysWeather = ({ screen }) => {
+  const data = useSelector((state) => state.nextSevenDaysData.data);
+
+  if (data.length === 0) {
     return <p>Loading</p>;
   }
 
