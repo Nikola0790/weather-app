@@ -63,7 +63,7 @@ function App() {
 
   const fetchAirPollData = (lat, lon) => {
     return (dispatch) => {
-      dispatch(actionAirPollutionRequest);
+      dispatch(actionAirPollutionRequest());
       getAirPollutionData(lat, lon)
         .then((response) => {
           const data = response;
@@ -77,7 +77,7 @@ function App() {
 
   const fetchAllData = (lat, lon) => {
     return (dispatch) => {
-      dispatch(allDataRequest);
+      dispatch(allDataRequest());
       getAllDataByGeolocation(lat, lon)
         .then((response) => {
           const data = response;
@@ -91,7 +91,7 @@ function App() {
 
   const fetchNextSevenDaysData = (lat, lon) => {
     return (dispatch) => {
-      dispatch(nextSevenDaysRequest);
+      dispatch(nextSevenDaysRequest());
       getDataFor_5_DaysByGeolocation(lat, lon)
         .then((response) => {
           const data = response;
@@ -105,7 +105,7 @@ function App() {
 
   const fetchCityNameByCoordinates = (lat, lon) => {
     return (dispatch) => {
-      dispatch(cityNameActionRequest);
+      dispatch(cityNameActionRequest());
       getLocationNameByCordinates(lat, lon)
         .then((response) => {
           const data = response;
@@ -119,7 +119,7 @@ function App() {
 
   const fetchDataByCityName = (cityAsParametr) => {
     return (dispatch) => {
-      dispatch(actionAllDataByCityNameRequest);
+      dispatch(actionAllDataByCityNameRequest());
       getCurrentDataByCityName(cityAsParametr)
         .then((response) => {
           dispatch(
@@ -145,7 +145,14 @@ function App() {
         dispatch(fetchAirPollData(latitude, longitude));
         dispatch(fetchAllData(latitude, longitude));
         dispatch(fetchNextSevenDaysData(latitude, longitude));
-        dispatch(fetchDataByCityName(cityAsParametr));
+        dispatch(fetchDataByCityName(cityAsParametr)); // Setting data in redux property allDataByCityName as an empty array, because when we don't input city in the search box and press enter we automatically change our location to our location at this moment if we allow using our geolocation. If we didn't allow geolocation we automatically change the city on Belgrade.
+      } else {
+        dispatch(fetchDataByCityName("Beograd"));
+        if (lat !== undefined && lon !== undefined) {
+          dispatch(fetchAirPollData(lat, lon));
+          dispatch(fetchAllData(lat, lon));
+          dispatch(fetchNextSevenDaysData(lat, lon));
+        }
       }
     } else {
       setScreenWidth(window.innerWidth);
