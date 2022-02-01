@@ -9,8 +9,10 @@ const Header = ({ setCity, id }) => {
   let dayNumSpec;
 
   const data = useSelector((state) => state.allData.data);
-  const nameByGeo = useSelector(
-    (state) => state.cityNameByCoordinates.data[0].name
+  const nameByGeo = useSelector((state) =>
+    state.cityNameByCoordinates.data
+      ? state.cityNameByCoordinates.data[0].name
+      : null
   );
   let name = useSelector((state) => state.allDataByCityName.data.name);
   let country = useSelector((state) => state.allDataByCityName.data.country);
