@@ -1,4 +1,7 @@
-const Details = ({ data, id }) => {
+import { useSelector } from "react-redux";
+
+const Details = ({ id }) => {
+  const data = useSelector((state) => state.allData.data);
   const dayData = data.daily.filter((item, index) => {
     if (index === id) {
       return item;

@@ -36,12 +36,6 @@ const Header = ({ setCity, id }) => {
   const cityName = (event) => {
     if (event.key === "Enter") {
       setCity(event.target.value);
-
-      // if we don't set "", we can't change the location name in the header
-      /*  if (event.target.value === "") {
-        name = "";
-        country = "";
-      } */
     }
   };
 

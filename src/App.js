@@ -182,18 +182,12 @@ function App() {
     return <p>LOADING</p>;
   }
 
-  /*   if (data.cod == 404) {
-    return <p>{data.message}</p>;
-  } */
   return (
     <div className="container">
       <Router>
         <Header setCity={setCityAsParametr} id={numNextDay} />
         <Routes>
-          <Route
-            path="/details"
-            element={<Details data={data} id={numNextDay} />}
-          />
+          <Route path="/details" element={<Details id={numNextDay} />} />
           <Route
             path="/main"
             element={
