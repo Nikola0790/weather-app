@@ -2,9 +2,25 @@
 
 WEATHER APP
 
-# Project Status
+## Project Status
 
-This project is currently in development.
+This project is finished. Users can view weather forecast data, then can view forecast for next few hours and for next few days.
+
+## Installation and Setup Instructions
+
+Clone down this repository. You will need node and npm installed on your machine.
+
+Installation:
+
+npm install
+
+To Start Server React:
+
+npm start
+
+To Visit App:
+
+localhost:3000
 
 # Getting Started with Create React App
 
