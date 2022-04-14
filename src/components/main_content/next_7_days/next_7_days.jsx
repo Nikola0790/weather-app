@@ -5,7 +5,7 @@ const NextSevenDays = ({ screen, setNum }) => {
   const data = useSelector((state) => state.allData.data);
 
   return (
-    <div className="next_7_box">
+    <div className="next_7_box" data-testid="test-1">
       {screen > 768 ? <p>Next 7 days</p> : <p>Next 5 days</p>}
       <div className="next_7_container">
         {data.daily.map((item, index) => {
